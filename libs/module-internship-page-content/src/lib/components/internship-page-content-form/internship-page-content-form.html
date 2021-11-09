@@ -1,0 +1,79 @@
+<form
+  class="internship-page-content-form mt-4 mx-auto"
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="internshipPageContentForm"
+  (ngSubmit)="onSubmitForm()"
+>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="topic">ชื่อหัวข้อ</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <input
+        placeholder="กรอกชื่อหัวข้อ"
+        nz-input
+        formControlName="topic"
+        type="text"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="content">คำบรรยาย</nz-form-label>
+    <nz-form-control>
+      <recruit-supplier-editor
+        [form]="internshipPageContentForm"
+        controlName="content"
+      >
+      </recruit-supplier-editor>
+    </nz-form-control>
+    <!-- Display error message manual because editor can't auto-detect error -->
+    <div
+      class="ant-form-item-explain ant-form-item-explain-error ng-star-inserted"
+      *ngIf="internshipPageContentForm.get('content')?.invalid && (internshipPageContentForm.get('content')?.dirty || internshipPageContentForm.get('content')?.touched)"
+    >
+      <div class="ng-trigger ng-trigger-helpMotion">กรุณากรอกข้อมูล</div>
+    </div>
+  </nz-form-item>
+
+  <nz-divider> </nz-divider>
+
+  <nz-form-item>
+    <nz-space class="ml-auto">
+      <button
+        *nzSpaceItem
+        nz-button
+        (click)="onCancel()"
+        type="button"
+        [disabled]="isLoading"
+      >
+        ยกเลิก
+      </button>
+      <button
+        *nzSpaceItem
+        nz-popconfirm
+        [nzPopconfirmTitle]="confirmTitle"
+        nz-button
+        nzType="primary"
+        (nzOnConfirm)="onConfirmSubmitForm()"
+        (nzOnCancel)="onPopConfirmCancel()"
+        [nzPopconfirmVisible]="isShowPopConfirm"
+        [nzPopconfirmTrigger]="null"
+        [nzLoading]="isLoading"
+      >
+        บันทึก
+      </button>
+      <ng-template #confirmTitle>
+        <div nz-space nzDirection="vertical">
+          <div *nzSpaceItem>
+            <i
+              nz-icon
+              nzType="question-circle-o"
+              class="mr-2 text-warning align-middle"
+            ></i>
+            <span>ยืนยัน</span>
+          </div>
+          <div *nzSpaceItem>คุณต้องการ {{actionText}} เนื้อหาหน้าฝึกงาน ?</div>
+        </div>
+      </ng-template>
+    </nz-space>
+  </nz-form-item>
+</form>

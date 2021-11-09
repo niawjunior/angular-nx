@@ -1,0 +1,36 @@
+/*
+ Imports style from the core library
+ */
+
+@import 'core/style';
+
+.corporate-culture-main-image-form {
+  //   max-width: 768px;
+}
+
+.avatar-uploader {
+  width: 0px !important;
+}
+
+.file-name,
+.file-size {
+  display: inline-block;
+  width: 50px;
+}
+
+.file-container-detail {
+  margin-left: 150px;
+}
+
+.action-button-group {
+  width: 75px;
+}
+
+.upload-error {
+  color: $red;
+}
+
+::ng-deep .ant-upload {
+  background-color: $dark-gray-4 !important;
+  overflow: hidden;
+}

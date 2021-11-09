@@ -1,0 +1,55 @@
+@import 'core/style';
+
+.layout {
+  position: relative;
+  min-height: 100vh;
+  background-color: $kit-gray-dark-6;
+
+  .inner-content {
+    background: transparent;
+  }
+
+  .ant-layout-sider {
+    @media (max-width: 991px) {
+      position: absolute;
+      height: 100%;
+      z-index: 1000;
+    }
+  }
+}
+
+.logo {
+  height: 32px;
+  margin: 34px 16px;
+  text-align: center;
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+}
+
+nz-content {
+  margin: 24px 16px 0;
+  background: transparent;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  min-height: 360px;
+}
+
+nz-footer {
+  text-align: center;
+}
+
+.breadcrumbs-link {
+  border-bottom: 2px solid $kit-blue-dark-1;
+  display: inline-block;
+}

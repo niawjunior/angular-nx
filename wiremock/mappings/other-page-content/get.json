@@ -1,0 +1,41 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/others"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "id": "1",
+            "name": "บทความพิเศษ",
+            "status": "T",
+            "startDate": "2021-01-12T04:04:43.933Z",
+            "endDate": "2022-06-10T04:04:43.933Z",
+            "createdAt": "2021-01-12T04:04:43.933Z",
+            "updatedAt": "2021-01-12T04:04:43.933Z"
+          },
+          {
+            "id": "2",
+            "name": "โปรโมชั่น",
+            "status": "F",
+            "startDate": "2021-03-12T04:04:43.933Z",
+            "endDate": "2022-07-10T04:04:43.933Z",
+            "createdAt": "2021-01-12T04:04:43.933Z",
+            "updatedAt": "2021-01-12T04:04:43.933Z"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

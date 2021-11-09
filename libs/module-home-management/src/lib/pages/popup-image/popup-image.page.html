@@ -1,0 +1,9 @@
+<div class="popup-image-container page-container">
+  <nz-divider nzOrientation="left" nzText="ภาพป็อบอัพ"></nz-divider>
+  <recruit-supplier-popup-image-table
+    [configTable]="configTable"
+    (deleted)="onDelete($event)"
+    (edit)="onEdit($event)"
+    (priorityChanged)="onPriorityChange($event)"
+  ></recruit-supplier-popup-image-table>
+</div>

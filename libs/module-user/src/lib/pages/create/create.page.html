@@ -1,0 +1,10 @@
+<div class="user-create-container page-container">
+  <nz-divider nzOrientation="left" nzText="เพิ่มผู้ใช้งาน"></nz-divider>
+  <recruit-supplier-user-form
+    [isLoading]="isLoading"
+    [rolesOptions]="rolesOptions"
+    [departmentThOptions]="departmentThOptions"
+    (submitted)="onCreateUser($event)"
+  >
+  </recruit-supplier-user-form>
+</div>

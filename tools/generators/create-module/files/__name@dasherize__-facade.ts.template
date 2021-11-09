@@ -1,0 +1,22 @@
+import { Injectable } from '@angular/core';
+import { <%= classify(name) %>Store } from './store/<%= dasherize(name) %>.store';
+import { <%= classify(name) %>StoreQuery } from './store/<%= dasherize(name) %>.query';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class <%= classify(name) %>Facade {
+  constructor(private store: <%= classify(name) %>Store, private storeQuery: <%= classify(name) %>StoreQuery) {}
+
+  setInitialized() {
+    this.store.update({ isInitialized: true });
+  }
+
+  getLoadStatus() {
+    return this.storeQuery.getInitializedStatus();
+  }
+
+  resetStore() {
+    this.store.reset();
+  }
+}

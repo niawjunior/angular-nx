@@ -1,0 +1,105 @@
+<div nz-row [nzGutter]="16" class="mt-4 mb-4 d-flex justify-content-end">
+  <div nz-col class="gutter-row">
+    <button nz-button nzType="primary" (click)="openModal()">
+      เพิ่มวัฒนธรรมองค์กร
+    </button>
+  </div>
+</div>
+<nz-table
+  nzShowSizeChanger
+  [nzScroll]="{x: '1000px'}"
+  [nzData]="configTable.corporateCultures"
+  [nzLoading]="configTable.isLoading"
+  [nzHideOnSinglePage]="true"
+>
+  <thead>
+    <tr>
+      <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+      <th nzWidth="100px">ลำดับที่</th>
+      <th>หัวข้อ</th>
+      <th>ภาพ/วีดีโอ</th>
+      <th nzWidth="300px">ลิงค์</th>
+      <th>วันที่ปรับปรุง</th>
+      <th nzAlign="right">จัดการ</th>
+    </tr>
+  </thead>
+  <tbody cdkDropList (cdkDropListDropped)="onPriorityChange($event)">
+    <tr
+      *ngFor="let corporateCulture of configTable.corporateCultures"
+      cdkDrag
+      [cdkDragData]="corporateCulture"
+    >
+      <td cdkDragHandle class="cursor-move">
+        <i nz-icon nzType="drag" nzTheme="outline" class="align-middle"></i>
+        {{ corporateCulture.priority}}
+      </td>
+      <td>{{ corporateCulture.topic}}</td>
+      <td>
+        <img
+          *ngIf="corporateCulture.image"
+          nz-image
+          width="200px"
+          height="100px"
+          [nzSrc]="corporateCulture.image"
+          [nzFallback]="fallbackImage"
+          class="corporate-culture-image"
+        />
+        <youtube-player
+          [width]="200"
+          [height]="100"
+          *ngIf="corporateCulture.videoUrl"
+          [videoId]="corporateCulture.videoUrl | youtubeId"
+        ></youtube-player>
+      </td>
+      <td nzWidth="50px">
+        <a
+          [href]="corporateCulture.videoUrl || corporateCulture.image"
+          target="_blank"
+          ><p nzEllipsis [nzEllipsisRows]="2" nz-typography>
+            {{ corporateCulture.videoUrl || corporateCulture.image }}
+          </p></a
+        >
+      </td>
+      <td>{{ corporateCulture.updatedAt | formatDate}}</td>
+      <td nzAlign="right">
+        <button
+          class="ant-btn-warning"
+          nz-button
+          nzType="primary"
+          (click)="onEdit(corporateCulture.id)"
+        >
+          <i nz-icon nzType="edit"></i>
+        </button>
+
+        <nz-divider nzType="vertical"></nz-divider>
+        <button
+          nz-popconfirm
+          [nzPopconfirmTitle]="confirmTitle"
+          nz-button
+          nzType="primary"
+          nzDanger
+          (nzOnConfirm)="onDelete(corporateCulture.id)"
+        >
+          <i nz-icon nzType="delete"></i>
+        </button>
+        <ng-template #confirmTitle>
+          <div nz-space nzDirection="vertical">
+            <div *nzSpaceItem>
+              <i
+                nz-icon
+                nzType="question-circle-o"
+                class="text-danger align-middle mr-2"
+              ></i>
+              <span>ยืนยัน</span>
+            </div>
+            <div *nzSpaceItem>คุณต้องการลบวัฒนธรรมองค์กร ?</div>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<recruit-supplier-corporate-culture-modal
+  (cancelled)="closeModal()"
+></recruit-supplier-corporate-culture-modal>

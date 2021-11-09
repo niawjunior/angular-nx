@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+import { Store, StoreConfig } from '@datorama/akita';
+
+import { <%= classify(name) %>State } from './<%= dasherize(name) %>.model';
+
+export function createInitialState(): <%= classify(name) %>State {
+  return {
+    isInitialized: false,
+  };
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+@StoreConfig({ name: '<%= dasherize(name) %>', resettable: true })
+export class <%= classify(name) %>Store extends Store<<%= classify(name) %>State> {
+  constructor() {
+    super(createInitialState());
+  }
+}

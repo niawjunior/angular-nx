@@ -1,0 +1,34 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "PUT",
+        "urlPathPattern": "/api/welfare/contents/change/priority/([a-zA-Z0-9/-]*)"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "data": {
+            "id": 111,
+            "priority": 1,
+            "topic": "หัวเรื่อง 1",
+            "content": "คำบรรยายประกอบ slide 1 ",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg",
+            "createdAt": "2021-07-11T14:58:22.059Z",
+            "updatedAt": "2021-07-11T14:58:22.059Z"
+          },
+          "succeeded": true,
+          "message": "success"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

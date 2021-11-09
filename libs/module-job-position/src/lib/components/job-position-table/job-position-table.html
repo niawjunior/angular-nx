@@ -1,0 +1,118 @@
+<div class="job-position-table-container">
+  <div nz-row [nzGutter]="16" class="mt-4 mb-4" nzJustify="space-between">
+    <div nz-col class="gutter-row" [nzSpan]="6">
+      <div nz-space nzDirection="vertical">
+        <nz-radio-group
+          *nzSpaceItem
+          [(ngModel)]="configTable.isOpen"
+          (ngModelChange)="onStatusChange()"
+        >
+          <label nz-radio [nzValue]="true">รายการที่ประกาศอยู่</label>
+          <label nz-radio [nzValue]="false"
+            >รายการที่สิ้นสุดการรับสมัครแล้ว</label
+          >
+        </nz-radio-group>
+        <nz-input-group *nzSpaceItem nzSearch [nzAddOnAfter]="suffixIconButton">
+          <input
+            type="text"
+            nz-input
+            placeholder="ค้นหา"
+            [(ngModel)]="configTable.keyword"
+            (keyup.enter)="onSearch()"
+          />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+          <button
+            nz-button
+            nzSearch
+            class="text-white d-flex align-items-center justify-content-center"
+            (click)="onSearch()"
+          >
+            <i nz-icon nzType="search"></i>
+          </button>
+        </ng-template>
+      </div>
+    </div>
+    <div nz-col class="gutter-row">
+      <a [routerLink]="[jobPositionCreateUrl]">
+        <button nz-button nzType="primary">เพิ่มตำแหน่งงานที่รับสมัคร</button>
+      </a>
+    </div>
+  </div>
+  <nz-table
+    nzShowSizeChanger
+    [nzScroll]="{x: '1000px'}"
+    [nzData]="configTable.jobPositions"
+    [nzFrontPagination]="false"
+    [nzLoading]="configTable.isLoading"
+    [nzTotal]="configTable.total"
+    [nzPageSize]="configTable.pageSize"
+    [nzPageIndex]="configTable.currentPage"
+    (nzQueryParams)="onQueryParamsChange($event)"
+  >
+    <thead>
+      <tr>
+        <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+        <th nzWidth="80px" nzColumnKey="priority">ลำดับที่</th>
+        <th nzColumnKey="startDate">วันที่เริ่มรับสมัคร</th>
+        <th nzColumnKey="endDate">วันที่สิ้นสุดรับสมัคร</th>
+        <th nzColumnKey="name">ตำแหน่งงาน</th>
+        <th nzColumnKey="address">สถานที่</th>
+        <th nzColumnKey="tag">ป้ายข้อความ</th>
+        <th nzColumnKey="user">ผู้บันทึก</th>
+        <th nzColumnKey="updatedAt">วันที่ปรับปรุงล่าสุด</th>
+        <th nzRight nzWidth="120px" nzAlign="right">จัดการ</th>
+      </tr>
+    </thead>
+    <tbody cdkDropList (cdkDropListDropped)="onPriorityChange($event)">
+      <tr
+        *ngFor="let jobPosition of configTable.jobPositions"
+        cdkDrag
+        [cdkDragData]="jobPosition"
+      >
+        <td cdkDragHandle class="cursor-move">
+          <i nz-icon nzType="drag" nzTheme="outline" class="align-middle"></i>
+          {{ jobPosition.priority}}
+        </td>
+        <td>{{ jobPosition.startDate | formatDate }}</td>
+        <td>{{ jobPosition.endDate | formatDate }}</td>
+        <td>{{ jobPosition.name }}</td>
+        <td>{{ jobPosition.address }}</td>
+        <td>{{ jobPosition.tag }}</td>
+        <td>{{ jobPosition.updatedBy || jobPosition.createdBy }}</td>
+        <td>{{ jobPosition.updatedAt | formatDate }}</td>
+        <td nzRight nzWidth="120px" nzAlign="right">
+          <a [routerLink]="[jobPositionUpdateUrl(jobPosition.id)]">
+            <button class="ant-btn-warning" nz-button nzType="primary">
+              <i nz-icon nzType="edit"></i>
+            </button>
+          </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button
+            nz-popconfirm
+            [nzPopconfirmTitle]="confirmTitle"
+            nz-button
+            nzType="primary"
+            nzDanger
+            (nzOnConfirm)="onDelete(jobPosition.id)"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+          <ng-template #confirmTitle>
+            <div nz-space nzDirection="vertical">
+              <div *nzSpaceItem>
+                <i
+                  nz-icon
+                  nzType="question-circle-o"
+                  class="text-danger align-middle mr-2"
+                ></i>
+                <span>ยืนยน</span>
+              </div>
+              <div *nzSpaceItem>คุณต้องการลบข้อมูลตำแหน่งงานที่รับสมัคร ?</div>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

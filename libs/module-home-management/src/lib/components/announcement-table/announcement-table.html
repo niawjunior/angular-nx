@@ -1,0 +1,85 @@
+<div class="announcement-table-container">
+<div nz-row [nzGutter]="16" class="mt-4 mb-4 d-flex justify-content-end">
+  <div nz-col class="gutter-row">
+    <button nz-button nzType="primary" (click)="openModal()">เพิ่มข่าวประชาสัมพันธ์ (ตัววิ่ง)</button>
+  </div>
+</div>
+<nz-table
+  nzShowSizeChanger
+  [nzScroll]="{x: '1000px'}"
+  [nzData]="configTable.announcements"
+  [nzLoading]="configTable.isLoading"
+  [nzHideOnSinglePage]="true"
+>
+  <thead>
+    <tr>
+      <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+      <th nzWidth="100px">ลำดับที่</th>
+      <th>วันที่เริ่มแสดง</th>
+      <th>วันที่สิ้นสุดแสดง</th>
+      <th nzWidth="400px">ข้อความข่าว</th>
+      <th>วันที่ปรับปรุง</th>
+      <th nzAlign="right">จัดการ</th>
+    </tr>
+  </thead>
+  <tbody cdkDropList (cdkDropListDropped)="onPriorityChange($event)">
+    <tr
+      *ngFor="let announcement of configTable.announcements"
+      cdkDrag
+      [cdkDragData]="announcement"
+    >
+      <td cdkDragHandle class="cursor-move">
+        <i nz-icon nzType="drag" nzTheme="outline" class="align-middle"></i>
+        {{ announcement.priority}}
+      </td>
+      <td>{{ announcement.startDate | formatDate}}</td>
+      <td>{{ announcement.endDate | formatDate}}</td>
+      <td>
+        <ng-marquee speed="normal" duration="0s">
+            <p class="" nzEllipsis [nzEllipsisRows]="3" nz-typography>
+              {{ announcement.content }}
+            </p>
+        </ng-marquee>
+      </td>
+      <td>{{ announcement.updatedAt | formatDate}}</td>
+      <td nzAlign="right">
+        <button 
+        class="ant-btn-warning" 
+        nz-button 
+        nzType="primary"  
+        (click)="onEdit(announcement.id)">
+          <i nz-icon nzType="edit"></i>
+        </button>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button
+          nz-popconfirm
+          [nzPopconfirmTitle]="confirmTitle"
+          nz-button
+          nzType="primary"
+          nzDanger
+          (nzOnConfirm)="onDelete(announcement.id)"
+        >
+          <i nz-icon nzType="delete"></i>
+        </button>
+        <ng-template #confirmTitle>
+          <div nz-space nzDirection="vertical">
+            <div *nzSpaceItem>
+              <i
+                nz-icon
+                nzType="question-circle-o"
+                class="text-danger align-middle mr-2"
+              ></i>
+              <span>ยืนยัน</span>
+            </div>
+            <div *nzSpaceItem>คุณต้องการลบข่าวประชาสัมพันธ์ ?</div>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+</div>
+
+<recruit-supplier-announcement-modal
+  (cancelled)="closeModal()"
+></recruit-supplier-announcement-modal>

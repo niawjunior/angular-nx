@@ -1,0 +1,39 @@
+// Import mixins
+@import '../../core/mixins.scss';
+
+.ant-input {
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: $primary;
+  }
+}
+
+.ant-input-affix-wrapper {
+  &:hover,
+  &:focus,
+  &:active {
+    .ant-input:not(.ant-input-disabled) {
+      border-color: $primary;
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////
+// DARK THEME STYLES
+[data-kit-theme='dark'] {
+  .ant-input {
+    &-number {
+      &-handler {
+        &-wrap {
+          background: $dark-gray-3;
+        }
+      }
+    }
+  }
+
+  .ant-form-item-label
+    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    color: $red-2 !important;
+  }
+}

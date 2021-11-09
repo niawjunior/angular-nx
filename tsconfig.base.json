@@ -1,0 +1,88 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2019", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@recruit-supplier/api-home-management": [
+        "libs/api-home-management/src/index.ts"
+      ],
+      "@recruit-supplier/api-internship-page-content": [
+        "libs/api-internship-page-content/src/index.ts"
+      ],
+      "@recruit-supplier/api-job-position": [
+        "libs/api-job-position/src/index.ts"
+      ],
+      "@recruit-supplier/api-master-information": [
+        "libs/api-master-information/src/index.ts"
+      ],
+      "@recruit-supplier/api-other-page-content": [
+        "libs/api-other-page-content/src/index.ts"
+      ],
+      "@recruit-supplier/api-recommend-job-position-to-agency": [
+        "libs/api-recommend-job-position-to-agency/src/index.ts"
+      ],
+      "@recruit-supplier/api-role": ["libs/api-role/src/index.ts"],
+      "@recruit-supplier/api-upload-file": [
+        "libs/api-upload-file/src/index.ts"
+      ],
+      "@recruit-supplier/api-user": ["libs/api-user/src/index.ts"],
+      "@recruit-supplier/api-welfare-page-content": [
+        "libs/api-welfare-page-content/src/index.ts"
+      ],
+      "@recruit-supplier/app-config": ["libs/app-config/src/index.ts"],
+      "@recruit-supplier/config": ["libs/config/src/index.ts"],
+      "@recruit-supplier/global-store": ["libs/global-store/src/index.ts"],
+      "@recruit-supplier/guards": ["libs/guards/src/index.ts"],
+      "@recruit-supplier/module-home-management": [
+        "libs/module-home-management/src/index.ts"
+      ],
+      "@recruit-supplier/module-internship-page-content": [
+        "libs/module-internship-page-content/src/index.ts"
+      ],
+      "@recruit-supplier/module-job-position": [
+        "libs/module-job-position/src/index.ts"
+      ],
+      "@recruit-supplier/module-login": ["libs/module-login/src/index.ts"],
+      "@recruit-supplier/module-master-information": [
+        "libs/module-master-information/src/index.ts"
+      ],
+      "@recruit-supplier/module-other-page-content": [
+        "libs/module-other-page-content/src/index.ts"
+      ],
+      "@recruit-supplier/module-page-not-found": [
+        "libs/module-page-not-found/src/index.ts"
+      ],
+      "@recruit-supplier/module-recommend-job-position-to-agency": [
+        "libs/module-recommend-job-position-to-agency/src/index.ts"
+      ],
+      "@recruit-supplier/module-role": ["libs/module-role/src/index.ts"],
+      "@recruit-supplier/module-user": ["libs/module-user/src/index.ts"],
+      "@recruit-supplier/module-welfare-page-content": [
+        "libs/module-welfare-page-content/src/index.ts"
+      ],
+      "@recruit-supplier/router": ["libs/router/src/index.ts"],
+      "@recruit-supplier/shared": ["libs/shared/src/index.ts"],
+      "@recruit-supplier/ui-layout": ["libs/ui-layout/src/index.ts"],
+      "@recruit-supplier/ui-theme": ["libs/ui-theme/src/index.ts"],
+      "@recruit-supplier/utils/file": ["libs/utils/file/src/index.ts"],
+      "@recruit-supplier/utils/http": ["libs/utils/http/src/index.ts"],
+      "@recruit-supplier/utils/observer-component": [
+        "libs/utils/observer-component/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

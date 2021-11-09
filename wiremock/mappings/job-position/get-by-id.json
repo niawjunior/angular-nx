@@ -1,0 +1,36 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/positions/([a-zA-Z0-9-]*)"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "data": {
+            "id": 2,
+            "priority": 2,
+            "name": "ช่างแอร์",
+            "description": "ต้องการช่างแอร์",
+            "address": "bts 1",
+            "tag": "ด่วน",
+            "status": "F",
+            "createdBy": "admin2",
+            "startDate": "2021-01-12T04:04:43.933Z",
+            "endDate": "2022-06-10T04:04:43.933Z",
+            "updatedAt": "2021-06-27T04:04:43.933Z"
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

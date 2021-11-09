@@ -1,0 +1,140 @@
+<form
+  class="user-form mt-4 mx-auto"
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmitForm()"
+>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="employeeId">รหัสพนักงาน</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <input
+        placeholder="กรอกรหัสพนักงาน"
+        nz-input
+        formControlName="employeeId"
+        type="text"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="fullnameTh">ชื่อ (ไทย)</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <input
+        placeholder="กรอกชื่อไทย"
+        nz-input
+        formControlName="fullnameTh"
+        type="text"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="fullnameEn">ชื่อ (อังกฤษ)</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <input
+        placeholder="กรอกชื่ออังกฤษ"
+        nz-input
+        formControlName="fullnameEn"
+        type="text"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="selectedType">บทบาท</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <nz-select
+        id="type"
+        class="w-100"
+        nzShowSearch
+        nzPlaceHolder="เลือกบทบาท"
+        formControlName="roleId"
+      >
+        <nz-option
+          *ngFor="let role of rolesOptions"
+          [nzLabel]="role.roleName"
+          [nzValue]="role.id"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="departmentTh">แผนก / ส่วน / ฝ่าย</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณา กรอกแผนก / ส่วน / ฝ่าย">
+      <nz-input-group [nzSuffix]="nameSuffixIcon">
+        <input
+          placeholder="กรอกแผนก / ส่วน / ฝ่าย"
+          nz-input
+          formControlName="departmentTh"
+          [nzAutocomplete]="departmentThAuto"
+        />
+      </nz-input-group>
+      <ng-template #nameSuffixIcon>
+        <i
+          nz-icon
+          [nzType]="isDepartmentThSearching ? 'loading' : 'search'"
+        ></i>
+      </ng-template>
+      <nz-autocomplete #departmentThAuto [compareWith]="compareFun">
+        <nz-auto-option
+          *ngFor="let departmentThOption of departmentThOptions"
+          [nzValue]="departmentThOption"
+          [nzLabel]="departmentThOption"
+        >
+          {{ departmentThOption }}
+        </nz-auto-option>
+      </nz-autocomplete>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="status">สถานะ</nz-form-label>
+    <nz-form-control>
+      <nz-switch formControlName="status"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-divider> </nz-divider>
+
+  <nz-form-item>
+    <nz-space class="ml-auto">
+      <button
+        *nzSpaceItem
+        nz-button
+        (click)="onCancel()"
+        type="button"
+        [disabled]="isLoading"
+      >
+        ยกเลิก
+      </button>
+      <button
+        *nzSpaceItem
+        nz-popconfirm
+        [nzPopconfirmTitle]="confirmTitle"
+        nz-button
+        nzType="primary"
+        (nzOnConfirm)="onConfirmSubmitForm()"
+        (nzOnCancel)="onPopConfirmCancel()"
+        [nzPopconfirmVisible]="isShowPopConfirm"
+        [nzPopconfirmTrigger]="null"
+        [nzLoading]="isLoading"
+      >
+        บันทึก
+      </button>
+      <ng-template #confirmTitle>
+        <div nz-space nzDirection="vertical">
+          <div *nzSpaceItem>
+            <i
+              nz-icon
+              nzType="question-circle-o"
+              class="mr-2 text-warning align-middle"
+            ></i>
+            <span>ยืนยัน</span>
+          </div>
+          <div *nzSpaceItem>คุณต้องการ {{actionText}} ผู้ใช้งาน ?</div>
+        </div>
+      </ng-template>
+    </nz-space>
+  </nz-form-item>
+</form>

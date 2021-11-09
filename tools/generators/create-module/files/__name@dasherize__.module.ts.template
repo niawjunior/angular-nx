@@ -1,0 +1,24 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '@recruit-supplier/shared';
+
+/**
+ * Import component
+ */
+import { <%= classify(name) %>Component } from './<%= dasherize(name) %>.component';
+
+/**
+ * Import router module
+ */
+import { <%= classify(name) %>RoutingModule } from './<%= dasherize(name) %>-routing';
+
+/**
+ * Import pages
+ */
+import { <%= classify(name) %>IndexPageComponent } from './pages/index/index.page';
+
+@NgModule({
+  declarations: [<%= classify(name) %>Component, <%= classify(name) %>IndexPageComponent],
+  imports: [CommonModule, <%= classify(name) %>RoutingModule, SharedModule],
+})
+export class <%= className %>Module {}

@@ -1,0 +1,123 @@
+<div nz-row [nzGutter]="16" class="mt-4 mb-4" nzJustify="space-between">
+  <div nz-col class="gutter-row" [nzSpan]="6">
+    <div nz-space nzDirection="vertical" class="w-100">
+      <nz-form-label [nzSpan]="24" nzFor="type" class="p-0"
+        >บทบาท</nz-form-label
+      >
+      <nz-select
+        id="type"
+        class="w-100"
+        *nzSpaceItem
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="เลือกบทบาท"
+        [(ngModel)]="configTable.selectedType"
+        (ngModelChange)="onTypeChange(configTable.selectedType)"
+      >
+        <nz-option
+          *ngFor="let role of configTable.rolesOptions"
+          [nzLabel]="role.roleName"
+          [nzValue]="role.id"
+        ></nz-option>
+      </nz-select>
+
+      <nz-input-group *nzSpaceItem nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input
+          type="text"
+          nz-input
+          placeholder="ค้นหา"
+          [(ngModel)]="configTable.keyword"
+          (keyup.enter)="onSearch()"
+        />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button
+          nz-button
+          nzSearch
+          class="text-white d-flex align-items-center justify-content-center"
+          (click)="onSearch()"
+        >
+          <i nz-icon nzType="search"></i>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+  <div nz-col class="gutter-row">
+    <a [routerLink]="[userCreateUrl]">
+      <button nz-button nzType="primary">เพิ่มผู้ใช้งาน</button>
+    </a>
+  </div>
+</div>
+<nz-table
+  nzShowSizeChanger
+ [nzScroll]="{x: '1000px'}"
+  [nzData]="configTable.users"
+  [nzFrontPagination]="false"
+  [nzLoading]="configTable.isLoading"
+  [nzTotal]="configTable.total"
+  [nzPageSize]="configTable.pageSize"
+  [nzPageIndex]="configTable.currentPage"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+    <tr>
+      <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+      <th>บทบาท</th>
+      <th>รหัสพนักงาน</th>
+      <th>ชื่อต้นสังกัด(ภาษาไทย)</th>
+      <th>ชื่อต้นสังกัด(ภาษาอังกฤษ)</th>
+      <th>แผนก / ส่วน / ฝ่าย</th>
+      <th>วันที่ปรับปรุงล่าสุด</th>
+      <th>สถานะ</th>
+      <th nzAlign="right">จัดการ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of configTable.users">
+      <td>{{ user.rolesModel?.roleName }}</td>
+      <td>{{ user.employeeId }}</td>
+      <td>{{ user.fullnameTh }}</td>
+      <td>{{ user.fullnameEn }}</td>
+      <td>{{ user.departmentTh }}</td>
+      <td>{{ user.updatedAt | formatDate }}</td>
+      <td>
+        <nz-switch
+          [ngModel]="user.status | transformBoolean"
+          nzDisabled
+        ></nz-switch>
+      </td>
+      <td nzAlign="right">
+        <a [routerLink]="[userUpdateUrl(user.id)]">
+          <button class="ant-btn-warning" nz-button nzType="primary">
+            <i nz-icon nzType="edit"></i>
+          </button>
+        </a>
+
+        <!-- <nz-divider nzType="vertical"></nz-divider>
+        <button
+          nz-popconfirm
+          [nzPopconfirmTitle]="confirmTitle"
+          nz-button
+          nzType="primary"
+          nzDanger
+          (nzOnConfirm)="onDelete(user.id)"
+        >
+          <i nz-icon nzType="delete"></i>
+        </button>
+        <ng-template #confirmTitle>
+          <div nz-space nzDirection="vertical">
+            <div *nzSpaceItem>
+              <i
+                nz-icon
+                nzType="question-circle-o"
+                class="text-danger align-middle mr-2"
+              ></i>
+              <span>ยืนยัน</span>
+            </div>
+            <div *nzSpaceItem>คุณต้องการลบข้อมูลผู้ใช้งาน ?</div>
+          </div>
+        </ng-template> -->
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

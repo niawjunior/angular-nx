@@ -1,0 +1,16 @@
+<div class="recommend-job-position-create-container page-container">
+  <nz-divider
+    nzOrientation="left"
+    nzText="เพิ่มรายการแนะนำตำแหน่งงาน"
+  ></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <div *ngIf="!isInitialLoading">
+    <nz-divider [nzText]="agencyTitle"></nz-divider>
+    <recruit-supplier-recommend-job-position-form
+      [agencyId]="agencyId"
+      [isLoading]="isLoading"
+      (submitted)="onCreateRecommendJobPosition($event)"
+    >
+    </recruit-supplier-recommend-job-position-form>
+  </div>
+</div>

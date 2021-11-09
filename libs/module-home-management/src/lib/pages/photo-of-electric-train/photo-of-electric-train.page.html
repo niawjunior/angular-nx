@@ -1,0 +1,9 @@
+<div class="popup-image-container page-container">
+  <nz-divider nzOrientation="left" nzText="ภาพสายรถไฟฟ้า"></nz-divider>
+  <recruit-supplier-photo-of-electric-train-table
+    [configTable]="configTable"
+    (deleted)="onDelete($event)"
+    (edit)="onEdit($event)"
+    (priorityChanged)="onPriorityChange($event)"
+  ></recruit-supplier-photo-of-electric-train-table>
+</div>

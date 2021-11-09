@@ -1,0 +1,15 @@
+import { Component, OnDestroy } from '@angular/core';
+import { GlobalService } from '@recruit-supplier/global-store';
+
+@Component({
+  selector: 'recruit-supplier-<%= module %>-<%= dasherize(name) %>-page',
+  templateUrl: './<%= dasherize(name) %>.page.html',
+  styleUrls: ['./<%= dasherize(name) %>.page.scss'],
+})
+export class <%= classify(module) %><%= classify(name) %>PageComponent implements OnDestroy {
+  constructor(private globalService: GlobalService) {}
+
+  ngOnDestroy() {
+    this.globalService.setPageLayout(null);
+  }
+}

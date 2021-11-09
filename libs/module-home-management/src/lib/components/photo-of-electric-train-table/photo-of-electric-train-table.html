@@ -1,0 +1,91 @@
+<div nz-row [nzGutter]="16" class="mt-4 mb-4 d-flex justify-content-end">
+  <div nz-col class="gutter-row">
+    <button nz-button nzType="primary" (click)="openModal()">
+      เพิ่มภาพสายรถไฟฟ้า
+    </button>
+  </div>
+</div>
+<nz-table
+  nzShowSizeChanger
+  [nzScroll]="{x: '1000px'}"
+  [nzData]="configTable.photoOfElectricTrains"
+  [nzLoading]="configTable.isLoading"
+  [nzHideOnSinglePage]="true"
+>
+  <thead>
+    <tr>
+      <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+      <th nzWidth="100px">ลำดับที่</th>
+      <th>ภาพ</th>
+      <th>สีเมนู</th>
+      <th>ชื่อสาย</th>
+      <th>วันที่ปรับปรุง</th>
+      <th nzAlign="right">จัดการ</th>
+    </tr>
+  </thead>
+  <tbody cdkDropList (cdkDropListDropped)="onPriorityChange($event)">
+    <tr
+      *ngFor="let photoOfElectricTrain of configTable.photoOfElectricTrains"
+      cdkDrag
+      [cdkDragData]="photoOfElectricTrain"
+    >
+      <td cdkDragHandle class="cursor-move">
+        <i nz-icon nzType="drag" nzTheme="outline" class="align-middle"></i>
+        {{ photoOfElectricTrain.priority}}
+      </td>
+      <td>
+        <img
+          nz-image
+          width="100px"
+          height="100px"
+          [nzSrc]="photoOfElectricTrain.image"
+          [alt]="photoOfElectricTrain.link"
+          [nzFallback]="fallbackImage"
+          class="image"
+        />
+      </td>
+      <td [style.color]="photoOfElectricTrain.color">
+        {{photoOfElectricTrain.color}}
+      </td>
+      <td>{{photoOfElectricTrain.name}}</td>
+      <td>{{ photoOfElectricTrain.updatedAt | formatDate}}</td>
+      <td nzAlign="right">
+        <button
+          class="ant-btn-warning"
+          nz-button
+          nzType="primary"
+          (click)="onEdit(photoOfElectricTrain.id)"
+        >
+          <i nz-icon nzType="edit"></i>
+        </button>
+
+        <nz-divider nzType="vertical"></nz-divider>
+        <button
+          nz-popconfirm
+          [nzPopconfirmTitle]="confirmTitle"
+          nz-button
+          nzType="primary"
+          nzDanger
+          (nzOnConfirm)="onDelete(photoOfElectricTrain.id)"
+        >
+          <i nz-icon nzType="delete"></i>
+        </button>
+        <ng-template #confirmTitle>
+          <div nz-space nzDirection="vertical">
+            <div *nzSpaceItem>
+              <i
+                nz-icon
+                nzType="question-circle-o"
+                class="text-danger align-middle mr-2"
+              ></i>
+              <span>ยืนยัน</span>
+            </div>
+            <div *nzSpaceItem>คุณต้องการลบภาพสายรถไฟฟ้า ?</div>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<recruit-supplier-photo-of-electric-train-modal (cancelled)="closeModal()">
+</recruit-supplier-photo-of-electric-train-modal>

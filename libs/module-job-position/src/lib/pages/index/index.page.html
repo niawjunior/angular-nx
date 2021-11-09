@@ -1,0 +1,11 @@
+<div class="job-position-index-container page-container">
+  <nz-divider nzOrientation="left" nzText="ตำแหน่งงานที่รับสมัคร"></nz-divider>
+  <recruit-supplier-job-position-table
+    [configTable]="configTable"
+    (paramsChanged)="onParamsChange($event)"
+    (searched)="onSearch($event)"
+    (deleted)="onDelete($event)"
+    (statusChanged)="onStatusChange($event)"
+    (priorityChanged)="onPriorityChange($event)"
+  ></recruit-supplier-job-position-table>
+</div>

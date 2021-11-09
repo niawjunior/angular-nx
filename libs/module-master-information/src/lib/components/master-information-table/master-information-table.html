@@ -1,0 +1,139 @@
+<div nz-row [nzGutter]="16" class="mt-4 mb-4" nzJustify="space-between">
+  <div nz-col class="gutter-row" [nzSpan]="6">
+    <div nz-space nzDirection="vertical" class="w-100">
+      <nz-form-label [nzSpan]="24" nzFor="company" class="p-0"
+        >Company</nz-form-label
+      >
+      <nz-select
+        id="company"
+        class="w-100"
+        *nzSpaceItem
+        nzShowSearch
+        nzPlaceHolder="เลือกบริษัท"
+        [(ngModel)]="configTable.selectedCompany"
+        (ngModelChange)="onCompanyChange()"
+      >
+        <nz-option
+          *ngFor="let masterInformationCompany of configTable.masterInformationCompanies"
+          [nzLabel]="masterInformationCompany"
+          [nzValue]="masterInformationCompany"
+        ></nz-option>
+      </nz-select>
+    </div>
+
+    <div nz-space nzDirection="vertical" class="w-100">
+      <nz-form-label [nzSpan]="24" nzFor="type" class="p-0">Type</nz-form-label>
+      <nz-select
+        id="type"
+        class="w-100"
+        *nzSpaceItem
+        nzShowSearch
+        nzPlaceHolder="เลือกประเภท"
+        [(ngModel)]="configTable.selectedType"
+        (ngModelChange)="onTypeChange()"
+      >
+        <nz-option
+          *ngFor="let masterInformationType of configTable.masterInformationTypes"
+          [nzLabel]="masterInformationType"
+          [nzValue]="masterInformationType"
+        ></nz-option>
+      </nz-select>
+      <nz-input-group *nzSpaceItem nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input
+          type="text"
+          nz-input
+          placeholder="ค้นหา"
+          [(ngModel)]="configTable.keyword"
+          (keyup.enter)="onSearch()"
+        />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button
+          nz-button
+          nzSearch
+          class="text-white d-flex align-items-center justify-content-center"
+          (click)="onSearch()"
+        >
+          <i nz-icon nzType="search"></i>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+  <div nz-col class="gutter-row">
+    <a
+      [routerLink]="[masterInformationCreateUrl]"
+      [queryParams]="{type: configTable.selectedType, company: configTable.selectedCompany}"
+    >
+      <button nz-button nzType="primary">เพิ่มข้อมูล Master</button>
+    </a>
+  </div>
+</div>
+<nz-table
+  nzShowSizeChanger
+  [nzScroll]="{x: '1000px'}"
+  [nzData]="configTable.masterInformations"
+  [nzFrontPagination]="false"
+  [nzLoading]="configTable.isLoading"
+  [nzTotal]="configTable.total"
+  [nzPageSize]="configTable.pageSize"
+  [nzPageIndex]="configTable.currentPage"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+    <tr>
+      <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+      <th nzColumnKey="code">Code</th>
+      <th nzColumnKey="nameTh">Thai Name</th>
+      <th nzColumnKey="nameEn">English Name</th>
+      <th nzColumnKey="status">สถานะ</th>
+      <th nzRight nzWidth="120px" nzAlign="right">จัดการ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let masterInformation of configTable.masterInformations">
+      <td>{{ masterInformation.code }}</td>
+      <td>{{ masterInformation.nameTh }}</td>
+      <td>{{ masterInformation.nameEn }}</td>
+      <td>
+        <nz-switch
+          [ngModel]="masterInformation.isActive"
+          nzDisabled
+        ></nz-switch>
+      </td>
+      <td nzAlign="right">
+        <a
+          [routerLink]="[masterInformationUpdateUrl(masterInformation.id)]"
+          [queryParams]="{type: configTable.selectedType, company: configTable.selectedCompany}"
+        >
+          <button class="ant-btn-warning" nz-button nzType="primary">
+            <i nz-icon nzType="edit"></i>
+          </button>
+        </a>
+        <!-- <nz-divider nzType="vertical"></nz-divider>
+        <button
+          nz-popconfirm
+          [nzPopconfirmTitle]="confirmTitle"
+          nz-button
+          nzType="primary"
+          nzDanger
+          (nzOnConfirm)="onDelete(masterInformation.id)"
+        >
+          <i nz-icon nzType="delete"></i>
+        </button>
+        <ng-template #confirmTitle>
+          <div nz-space nzDirection="vertical">
+            <div *nzSpaceItem>
+              <i
+                nz-icon
+                nzType="question-circle-o"
+                class="text-danger align-middle mr-2"
+              ></i>
+              <span>ยืนยน</span>
+            </div>
+            <div *nzSpaceItem>คุณต้องการลบข้อมูล Master ?</div>
+          </div>
+        </ng-template> -->
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

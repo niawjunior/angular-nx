@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+import { Query } from '@datorama/akita';
+
+import { <%= classify(name) %>State } from './<%= dasherize(name) %>.model';
+import { <%= classify(name) %>Store } from './<%= dasherize(name) %>.store';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class <%= classify(name) %>StoreQuery extends Query<<%= classify(name) %>State> {
+  moduleIsLoaded$ = this.select('isInitialized');
+
+  constructor(protected store: <%= classify(name) %>Store) {
+    super(store);
+  }
+
+  getInitializedStatus() {
+    return this.store.getValue().isInitialized;
+  }
+}

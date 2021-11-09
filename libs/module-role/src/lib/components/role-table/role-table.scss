@@ -1,0 +1,11 @@
+/*
+ Imports style from the core library
+ */
+
+@import 'core/style';
+
+.role-table-container {
+  overflow: auto;
+  padding: 2rem 3rem;
+  background-color: $kit-gray-drak-8;
+}

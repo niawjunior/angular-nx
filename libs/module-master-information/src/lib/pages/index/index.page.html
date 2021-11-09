@@ -1,0 +1,11 @@
+<div class="master-information-index-container page-container">
+  <nz-divider nzOrientation="left" nzText="ข้อมูล Master"></nz-divider>
+  <recruit-supplier-master-information-table
+    [configTable]="configTable"
+    (paramsChanged)="onParamsChange($event)"
+    (searched)="onSearch($event)"
+    (deleted)="onDelete($event)"
+    (typeChanged)="onTypeChange($event)"
+    (companyChanged)="onCompanyChange($event)"
+  ></recruit-supplier-master-information-table>
+</div>

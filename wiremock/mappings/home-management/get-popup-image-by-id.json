@@ -1,0 +1,82 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/popup/111"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": 111,
+          "priority": 1,
+          "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg",
+          "link": "https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg",
+          "startDate": "2021-06-27T04:04:43.933Z",
+          "endDate": "2021-06-28T04:04:43.933Z",
+          "updatedAt": "2021-06-28T04:04:43.933Z"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/popup/222"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": 222,
+          "priority": 2,
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Breaded_Cat.jpg/640px-Breaded_Cat.jpg",
+          "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Breaded_Cat.jpg/640px-Breaded_Cat.jpg",
+          "startDate": "2021-06-27T04:04:43.933Z",
+          "endDate": "2021-06-27T04:04:43.933Z",
+          "updatedAt": "2021-06-27T04:04:43.933Z"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/popup/333"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": 333,
+          "priority": 3,
+          "image": "https://developer.ridgerun.com/wiki/images/8/80/Egyptian_cat.jpg",
+          "link": "https://developer.ridgerun.com/wiki/images/8/80/Egyptian_cat.jpg",
+          "startDate": "2021-06-27T04:04:43.933Z",
+          "endDate": "2021-06-27T04:04:43.933Z",
+          "updatedAt": "2021-06-27T04:04:43.933Z"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

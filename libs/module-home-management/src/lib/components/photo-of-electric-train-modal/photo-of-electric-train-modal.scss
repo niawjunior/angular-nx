@@ -1,0 +1,38 @@
+/*
+ Imports style from the core library
+ */
+
+@import 'core/style';
+
+.photo-of-electric-train-form {
+  background-color: #33304a;
+  padding: 1rem;
+}
+
+.avatar-uploader {
+  width: 0px !important;
+}
+
+.file-name,
+.file-size {
+  display: inline-block;
+  width: 50px;
+}
+
+.file-container-detail {
+  width: 220px;
+  margin-left: 30px;
+}
+
+.action-button-group {
+  width: 75px;
+}
+
+.upload-error {
+  color: $red;
+}
+
+::ng-deep .ant-upload {
+  background-color: $dark-gray-4 !important;
+  overflow: hidden;
+}

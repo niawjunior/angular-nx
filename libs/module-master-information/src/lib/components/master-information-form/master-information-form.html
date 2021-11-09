@@ -1,0 +1,96 @@
+<form
+  class="master-information-form mt-4 mx-auto"
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="masterInformationForm"
+  (ngSubmit)="onSubmitForm()"
+>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="code">Code</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <input
+        placeholder="กรอก Code"
+        nz-input
+        formControlName="code"
+        maxlength="100"
+        type="text"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="nameTh">Thai Name</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <input
+        placeholder="กรอก ชื่อภาษาไทย"
+        nz-input
+        formControlName="nameTh"
+        maxlength="200"
+        type="text"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="nameEn">English Name</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <input
+        placeholder="กรอก ชื่อภาษาอังกฤษ"
+        nz-input
+        formControlName="nameEn"
+        maxlength="200"
+        type="text"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="isActive">สถานะ</nz-form-label>
+    <nz-form-control>
+      <nz-switch formControlName="isActive"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-divider> </nz-divider>
+
+  <nz-form-item>
+    <nz-space class="ml-auto">
+      <button
+        *nzSpaceItem
+        nz-button
+        (click)="onCancel()"
+        type="button"
+        [disabled]="isLoading"
+      >
+        ยกเลิก
+      </button>
+      <button
+        *nzSpaceItem
+        nz-popconfirm
+        [nzPopconfirmTitle]="confirmTitle"
+        nz-button
+        nzType="primary"
+        (nzOnConfirm)="onConfirmSubmitForm()"
+        (nzOnCancel)="onPopConfirmCancel()"
+        [nzPopconfirmVisible]="isShowPopConfirm"
+        [nzPopconfirmTrigger]="null"
+        [nzLoading]="isLoading"
+      >
+        บันทึก
+      </button>
+      <ng-template #confirmTitle>
+        <div nz-space nzDirection="vertical">
+          <div *nzSpaceItem>
+            <i
+              nz-icon
+              nzType="question-circle-o"
+              class="mr-2 text-warning align-middle"
+            ></i>
+            <span>ยืนยน</span>
+          </div>
+          <div *nzSpaceItem>คุณต้องการ {{actionText}} ข้อมูล Master ?</div>
+        </div>
+      </ng-template>
+    </nz-space>
+  </nz-form-item>
+</form>

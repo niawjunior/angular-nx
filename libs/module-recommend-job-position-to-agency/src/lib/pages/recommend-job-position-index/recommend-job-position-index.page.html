@@ -1,0 +1,14 @@
+<div class="agency-index-container page-container">
+  <nz-divider nzOrientation="left" nzText="รายการแนะนำตำแหน่งงาน"></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <div *ngIf="!isInitialLoading">
+    <nz-divider [nzText]="agencyTitle"></nz-divider>
+    <recruit-supplier-recommend-job-position-table
+      [configTable]="configTable"
+      [agencyId]="agencyId"
+      (paramsChanged)="onParamsChange($event)"
+      (searched)="onSearch($event)"
+      (deleted)="onDelete($event)"
+    ></recruit-supplier-recommend-job-position-table>
+  </div>
+</div>

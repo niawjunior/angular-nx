@@ -1,0 +1,46 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/roles/([a-zA-Z0-9-]*)"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": "1",
+          "roleName": "ฝ่ายบุคคล",
+          "roleDescription": "ทำหน้าที่เป็น ฝ่ายบุคคล",
+          "roleMapping": [
+            {
+              "roleId": "1",
+              "rolesModel": "1",
+              "menuId": "1",
+              "menuModel": {
+                "menuName": "recommend-job-positions-to-agency",
+                "menuDescription": "แนะนำตำแหน่งงานให้ต้นสังกัด"
+              }
+            },
+            {
+              "roleId": "2",
+              "rolesModel": "2",
+              "menuId": "2",
+              "menuModel": {
+                "menuName": "job-applicants-internships",
+                "menuDescription": "ผู้สมัครงาน / ฝึกงาน"
+              }
+            }
+          ]
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+<div class="manage-other-page-content-create-container page-container">
+  <nz-divider
+    nzOrientation="left"
+    nzText="เพิ่มรายการแนะนำตำแหน่งงาน"
+  ></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <div *ngIf="!isInitialLoading">
+    <nz-divider [nzText]="otherPageContent.name"></nz-divider>
+    <recruit-supplier-manage-other-page-content-form
+      [otherPageContentId]="otherPageContentId"
+      [isLoading]="isLoading"
+      (submitted)="onCreateManageOtherPageContent($event)"
+    >
+    </recruit-supplier-manage-other-page-content-form>
+  </div>
+</div>

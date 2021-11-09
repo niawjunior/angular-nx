@@ -1,0 +1,31 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/home/bts/news/([a-zA-Z0-9/-]*)"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": "1",
+          "priority": 1,
+          "topic": "หัวข้อ",
+          "content": "บีทีเอสพร้อมนำเจ้าหน้าที่เข้ารับการฉีดวัคซีนตามนโยบาย",
+          "startDate": "2021-07-11T14:58:22.059Z",
+          "endDate": "2021-07-11T14:58:22.059Z",
+          "createdAt": "2021-07-11T14:58:22.059Z",
+          "updatedAt": "2021-07-11T14:58:22.059Z"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+<div class="welfare-page-content-create-container page-container">
+  <nz-divider nzOrientation="left" nzText="แก้ไขเนื้อหาหน้าฝึกงาน"></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <recruit-supplier-internship-page-content-form
+    *ngIf="!isInitialLoading"
+    [initialInternshipPageContent]="internship"
+    [isLoading]="isLoading"
+    [formMode]="formMode"
+    (submitted)="onUpdateInternshipPageContent($event)"
+  >
+  </recruit-supplier-internship-page-content-form>
+</div>

@@ -1,0 +1,12 @@
+<div class="role-create-container page-container">
+  <nz-divider nzOrientation="left" nzText="แก้ไขบทบาท"></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <recruit-supplier-role-form
+    [initialRole]="role"
+    *ngIf="!isInitialLoading"
+    [isLoading]="isLoading"
+    [formMode]="formMode"
+    (submitted)="onUpdateRole($event)"
+  >
+  </recruit-supplier-role-form>
+</div>

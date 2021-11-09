@@ -1,0 +1,12 @@
+// Import mixins
+@import '../../core/mixins.scss';
+
+////////////////////////////////////////////////////////////////////////////////////////////
+// DARK THEME STYLES
+[data-kit-theme='dark'] {
+    .ant-popover {
+      &-inner {
+        border: 1px solid $white !important;
+      }
+    }
+  }

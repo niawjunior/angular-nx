@@ -1,0 +1,13 @@
+import { Component, OnDestroy } from '@angular/core';
+
+@Component({
+  selector: 'recruit-supplier-<%= dasherize(name) %>',
+  templateUrl: `./<%= dasherize(name) %>.component.html`,
+  styleUrls: [`./<%= dasherize(name) %>.component.scss`],
+})
+export class <%= classify(name) %>Component implements OnDestroy {
+  constructor() {
+  }
+
+  ngOnDestroy() {}
+}

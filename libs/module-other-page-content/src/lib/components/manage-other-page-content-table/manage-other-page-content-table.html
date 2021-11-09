@@ -1,0 +1,82 @@
+<div class="manageOtherPageContent-table-container">
+  <div nz-row [nzGutter]="16" class="mt-4 mb-4 d-flex justify-content-end">
+    <div nz-col class="gutter-row">
+      <a [routerLink]="[manageOtherPageContentCreateUrl]">
+        <button nz-button nzType="primary">เพิ่มหัวข้อ</button>
+      </a>
+    </div>
+  </div>
+  <nz-table
+    nzShowSizeChanger
+    [nzScroll]="{x: '1000px'}"
+    [nzData]="configTable.manageOtherPageContents"
+    [nzLoading]="configTable.isLoading"
+    [nzHideOnSinglePage]="true"
+  >
+    <thead>
+      <tr>
+        <th nzWidth="100px">ลำดับที่</th>
+        <th>ชื่อหัวข้อ</th>
+        <th>คำบรรยาย</th>
+        <th>วันที่ปรับปรุง</th>
+        <th nzAlign="right">จัดการ</th>
+      </tr>
+    </thead>
+    <tbody cdkDropList (cdkDropListDropped)="onPriorityChange($event)">
+      <tr
+        *ngFor="let manageOtherPageContent of configTable.manageOtherPageContents"
+        cdkDrag
+        [cdkDragData]="manageOtherPageContent"
+      >
+        <td cdkDragHandle class="cursor-move">
+          <i nz-icon nzType="drag" nzTheme="outline" class="align-middle"></i>
+          {{ manageOtherPageContent.priority}}
+        </td>
+        <td>{{ manageOtherPageContent.topic}}</td>
+        <td>
+          <button
+            nz-button
+            class="border-white"
+            (click)="onDisplayContent(manageOtherPageContent.content)"
+          >
+            แสดงคำบรรยาย...
+          </button>
+        </td>
+        <td>{{ manageOtherPageContent.updatedAt | formatDate }}</td>
+        <td nzAlign="right">
+          <a
+            [routerLink]="[manageOtherPageContentUpdateUrl(manageOtherPageContent.id)]"
+          >
+            <button class="ant-btn-warning" nz-button nzType="primary">
+              <i nz-icon nzType="edit"></i>
+            </button>
+          </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button
+            nz-popconfirm
+            [nzPopconfirmTitle]="confirmTitle"
+            nz-button
+            nzType="primary"
+            nzDanger
+            (nzOnConfirm)="onDelete(manageOtherPageContent.id)"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+          <ng-template #confirmTitle>
+            <div nz-space nzDirection="vertical">
+              <div *nzSpaceItem>
+                <i
+                  nz-icon
+                  nzType="question-circle-o"
+                  class="text-danger align-middle mr-2"
+                ></i>
+                <span>ยืนยัน</span>
+              </div>
+              <div *nzSpaceItem>คุณต้องการลบหัวข้อ ?</div>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

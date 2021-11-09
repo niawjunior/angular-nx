@@ -1,0 +1,8 @@
+<div class="agency-index-container page-container">
+  <nz-divider nzOrientation="left" nzText="รายการต้นสังกัด"></nz-divider>
+  <recruit-supplier-agency-table
+    [configTable]="configTable"
+    (paramsChanged)="onParamsChange($event)"
+    (searched)="onSearch($event)"
+  ></recruit-supplier-agency-table>
+</div>

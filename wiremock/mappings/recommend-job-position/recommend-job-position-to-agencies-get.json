@@ -1,0 +1,60 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/agencies",
+        "queryParameters": {
+          "PageNumber": {
+            "matches": ".*"
+          },
+          "PageSize": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "data": [
+            {
+              "id": "1",
+              "employeeId": "123456",
+              "fullnameTh": "สำใจ สบายดี",
+              "fullnameEn": "Somjai Sabaidee",
+              "departmentTh": "แผนกซ่อมบำรุง",
+              "departmentEn": "maintenance department",
+              "status": "T",
+              "roleId": "1",
+              "rolesModel": {
+                "id": "1f1256d8-696d-47d0-463a-08d93da5b511",
+                "roleName": "ผู้จัดการ",
+                "roleDescription": "ผู้จัดการ",
+                "roleMapping": null
+              },
+              "updatedAt": "2021-06-27T04:04:43.933Z"
+            }
+          ],
+          "succeeded": true,
+          "message": "success",
+          "pageNumber": 1,
+          "pageSize": 10,
+          "firstPage": "1",
+          "lastPage": "1",
+          "totalPages": 1,
+          "totalRecords": 3,
+          "nextPage": "1",
+          "previousPage": "1"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<div class="user-create-container page-container">
+  <nz-divider nzOrientation="left" nzText="แก้ไขผู้ใช้งาน"></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <recruit-supplier-user-form
+    [initialUser]="user"
+    *ngIf="!isInitialLoading"
+    [isLoading]="isLoading"
+    [formMode]="formMode"
+    [rolesOptions]="rolesOptions"
+    (submitted)="onUpdateUser($event)"
+  >
+  </recruit-supplier-user-form>
+</div>

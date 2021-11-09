@@ -1,0 +1,9 @@
+<div class="main-slide-image-container page-container">
+  <nz-divider nzOrientation="left" nzText="ภาพสไลด์หลัก"></nz-divider>
+  <recruit-supplier-main-slide-image-table
+    [configTable]="configTable"
+    (deleted)="onDelete($event)"
+    (edit)="onEdit($event)"
+    (priorityChanged)="onPriorityChange($event)"
+  ></recruit-supplier-main-slide-image-table>
+</div>

@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "create-module-page",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Page name",
+      "x-prompt": "What's the name of your page?",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "module": {
+      "type": "string",
+      "description": "Module name",
+      "x-prompt": "Which module should this page be created in?",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      }
+    }
+  },
+  "required": ["name", "module"]
+}

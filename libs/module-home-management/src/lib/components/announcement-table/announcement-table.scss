@@ -1,0 +1,14 @@
+/*
+ Imports style from the core library
+ */
+
+@import 'core/style';
+.announcement-table-container{
+    ::ng-deep {
+        .ng-marquee {
+            span {
+                width: 100%;
+            }
+        }
+    }
+}

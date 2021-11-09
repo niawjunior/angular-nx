@@ -1,0 +1,51 @@
+<ng-template #avatarTemplate>
+  <nz-avatar nzSrc="assets/images/bts-logo.png"></nz-avatar>
+</ng-template>
+<div class="module-login-page">
+  <div class="login-form-container">
+    <nz-card class="login-form-card" >
+      <nz-card-meta class="mb-4 d-flex" [nzAvatar]="avatarTemplate" nzTitle="เข้าสู่ระบบ" ></nz-card-meta>
+      <form
+        nz-form
+        [nzLayout]="'vertical'"
+        [formGroup]="jobPositionForm"
+        class="login-form"
+        (ngSubmit)="submitForm()"
+      >
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">ชื่อผู้ใช้</nz-form-label>
+          <nz-form-control nzErrorTip="กรุณากรอกชื่อผู้ใช้!">
+            <nz-input-group nzPrefixIcon="user">
+              <input
+                type="text"
+                nz-input
+                formControlName="username"
+                placeholder="ชื่อผู้ใช้"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">รหัสผ่าน</nz-form-label>
+          <nz-form-control nzErrorTip="กรุณากรอกรหัสผ่าน!">
+            <nz-input-group nzPrefixIcon="lock">
+              <input
+                type="password"
+                nz-input
+                formControlName="password"
+                placeholder="รหัสผ่าน"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <button
+          nz-button
+          class="btn-block"
+          [nzType]="'primary'"
+        >
+          เข้าสู่ระบบ
+        </button>
+      </form>
+    </nz-card>
+  </div>
+</div>

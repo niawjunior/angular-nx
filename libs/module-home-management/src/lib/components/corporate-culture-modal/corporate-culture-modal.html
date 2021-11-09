@@ -1,0 +1,176 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzCentered
+  nzWidth="600px"
+  nzTitle="รายละเอียดเนื้อหา"
+  (nzOnCancel)="onCancel()"
+  nzMaskClosable="false"
+>
+  <ng-container *nzModalContent>
+    <div class="corporate-culture-form">
+      <form
+        class="mt-4 mx-auto"
+        nz-form
+        nzLayout="vertical"
+        [formGroup]="corporateCultureForm"
+      >
+        <nz-form-item>
+          <nz-form-label nzFor="topic" nzRequired>หัวข้อ</nz-form-label>
+          <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+            <input
+              placeholder="กรอกหัวข้อ"
+              nz-input
+              formControlName="topic"
+              type="text"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="type">ประเภทสื่อ</nz-form-label>
+          <nz-radio-group formControlName="type">
+            <label nz-radio nzValue="image">ภาพ</label>
+            <label nz-radio nzValue="video">วีดีโอ</label>
+          </nz-radio-group>
+        </nz-form-item>
+
+        <nz-form-item
+          *ngIf="corporateCultureForm.get('type')?.value === 'image'"
+        >
+          <nz-form-label nzRequired nzFor="image"
+            >ภาพ (แนะนำ ขนาด 800px, 600px)</nz-form-label
+          >
+          <nz-form-control>
+            <div class="d-flex align-items-center justify-content-between">
+              <nz-upload
+                class="avatar-uploader"
+                nzName="avatar"
+                nzListType="picture-card"
+                [nzShowUploadList]="false"
+                [nzBeforeUpload]="beforeUpload"
+              >
+                <ng-container *ngIf="!avatarUrl">
+                  <i
+                    class="upload-icon"
+                    nz-icon
+                    [nzType]="loading ? 'loading' : 'plus'"
+                  ></i>
+                  <div class="ant-upload-text">เลือก</div>
+                </ng-container>
+                <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+              </nz-upload>
+
+              <div class="file-container-detail">
+                <div class="d-flex">
+                  <p class="file-name">ชื่อภาพ:</p>
+                  <p>{{ (file?.name ?? '' | maxText : 20: '...') || '-'}}</p>
+                </div>
+
+                <div class="d-flex">
+                  <p class="file-name">ขนาด:</p>
+                  <p>{{ (file?.size ?? '' | fileSize) || '-'}}</p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between action-button-group">
+                <button
+                  *ngIf="this.corporateCultureForm.get('image')?.value"
+                  nzShape="circle"
+                  nzDanger
+                  nz-button
+                  nzType="primary"
+                  (click)="onRemoveFile()"
+                  class="d-flex align-items-center justify-content-center"
+                >
+                  <i nz-icon nzType="delete"></i>
+                </button>
+                <button
+                  *ngIf="this.corporateCultureForm.get('image')?.value"
+                  nzShape="circle"
+                  nz-button
+                  nzType="primary"
+                  (click)="onZoomFile()"
+                  class="d-flex align-items-center justify-content-center"
+                >
+                  <i nz-icon nzType="zoom-in"></i>
+                </button>
+              </div>
+            </div>
+            <div *ngIf="isShowUploadError" class="upload-error">
+              กรุณาเลือกรูปภาพ
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item
+          *ngIf="corporateCultureForm.get('type')?.value === 'video'"
+        >
+          <nz-form-label nzFor="video" nzRequired>วีดีโอ</nz-form-label>
+          <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+            <input
+              placeholder="กรอกลิงค์วีดีโอ"
+              nz-input
+              formControlName="video"
+              type="text"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label nzFor="description">คำบรรยาย</nz-form-label>
+          <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+            <textarea
+              nz-input
+              formControlName="description"
+              placeholder="กรอกคำบรรยาย"
+              [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </ng-container>
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="onCancel()">ยกเลิก</button>
+    <button
+      nz-popconfirm
+      [nzPopconfirmTitle]="confirmTitle"
+      nz-button
+      nzType="primary"
+      (nzOnConfirm)="onConfirmSubmitForm()"
+      (nzOnCancel)="onPopConfirmCancel()"
+      [nzPopconfirmVisible]="isShowPopConfirm"
+      [nzPopconfirmTrigger]="null"
+      [nzLoading]="isLoading"
+      (click)="onSubmitForm()"
+    >
+      บันทึก
+    </button>
+
+    <ng-template #confirmTitle>
+      <div nz-space nzDirection="vertical">
+        <div *nzSpaceItem>
+          <i
+            nz-icon
+            nzType="question-circle-o"
+            class="mr-2 text-warning align-middle"
+          ></i>
+          <span>ยืนยัน</span>
+        </div>
+        <div *nzSpaceItem>คุณต้องการ {{actionText}} วัฒนธรรมองค์กร?</div>
+      </div>
+    </ng-template>
+  </div>
+</nz-modal>
+
+<nz-modal
+  [nzVisible]="previewVisible"
+  [nzContent]="modalContent"
+  [nzFooter]="null"
+  (nzOnCancel)="previewVisible = false"
+>
+  <ng-template #modalContent>
+    <div class="mt-4">
+      <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+    </div>
+  </ng-template>
+</nz-modal>

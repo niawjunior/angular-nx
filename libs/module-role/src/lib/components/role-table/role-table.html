@@ -1,0 +1,86 @@
+<div nz-row [nzGutter]="16" class="mt-4 mb-4" nzJustify="space-between">
+  <div nz-col class="gutter-row" [nzSpan]="6">
+    <div nz-space nzDirection="vertical" class="w-100">
+      <nz-input-group *nzSpaceItem nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input
+          type="text"
+          nz-input
+          placeholder="ค้นหา"
+          [(ngModel)]="configTable.keyword"
+          (keyup.enter)="onSearch()"
+        />
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button
+          nz-button
+          nzSearch
+          class="text-white d-flex align-items-center justify-content-center"
+          (click)="onSearch()"
+        >
+          <i nz-icon nzType="search"></i>
+        </button>
+      </ng-template>
+    </div>
+  </div>
+  <div nz-col class="gutter-row">
+    <a [routerLink]="[roleCreateUrl]">
+      <button nz-button nzType="primary">เพิ่มบทบาท</button>
+    </a>
+  </div>
+</div>
+<nz-table
+  nzShowSizeChanger
+ [nzScroll]="{x: '1000px'}"
+  [nzData]="configTable.roles"
+  [nzFrontPagination]="false"
+  [nzLoading]="configTable.isLoading"
+  [nzTotal]="configTable.total"
+  [nzPageSize]="configTable.pageSize"
+  [nzPageIndex]="configTable.currentPage"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+    <tr>
+      <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+      <th nzColumnKey="priority">บทบาท</th>
+      <th nzAlign="right">จัดการ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let role of configTable.roles">
+      <td>{{ role.roleName }}</td>
+      <td nzAlign="right">
+        <a [routerLink]="[roleUpdateUrl(role.id)]">
+          <button class="ant-btn-warning" nz-button nzType="primary">
+            <i nz-icon nzType="edit"></i>
+          </button>
+        </a>
+
+        <!-- <nz-divider nzType="vertical"></nz-divider>
+        <button
+          nz-popconfirm
+          [nzPopconfirmTitle]="confirmTitle"
+          nz-button
+          nzType="primary"
+          nzDanger
+          (nzOnConfirm)="onDelete(role.id)"
+        >
+          <i nz-icon nzType="delete"></i>
+        </button>
+        <ng-template #confirmTitle>
+          <div nz-space nzDirection="vertical">
+            <div *nzSpaceItem>
+              <i
+                nz-icon
+                nzType="question-circle-o"
+                class="text-danger align-middle mr-2"
+              ></i>
+              <span>ยืนยัน</span>
+            </div>
+            <div *nzSpaceItem>คุณต้องการลบข้อมูลบทบาท ?</div>
+          </div>
+        </ng-template> -->
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

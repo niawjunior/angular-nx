@@ -1,0 +1,43 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/internships"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "id": 111,
+            "priority": 1,
+            "topic": "หัวเรื่อง 1",
+            "content": "คำบรรยายประกอบ slide 1 ",
+            "startDate": "2021-01-12T04:04:43.933Z",
+            "endDate": "2022-06-10T04:04:43.933Z",
+            "createdAt": "2021-07-11T14:58:22.059Z",
+            "updatedAt": "2021-06-27T04:04:43.933Z"
+          },
+          {
+            "id": "2",
+            "priority": 2,
+            "topic": "หัวเรื่อง 2",
+            "content": "คำบรรยายประกอบ slide 2",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Breaded_Cat.jpg/640px-Breaded_Cat.jpg",
+            "link": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Breaded_Cat.jpg/640px-Breaded_Cat.jpg",
+            "createdAt": "2021-07-11T14:58:22.059Z",
+            "updatedAt": "2021-07-11T14:58:22.059Z"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

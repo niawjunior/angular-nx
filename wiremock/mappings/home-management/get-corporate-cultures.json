@@ -1,0 +1,53 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/home/bts/culture"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": [
+          {
+            "id": "1",
+            "priority": 1,
+            "topic": "บุคลากร",
+            "content": "คำบรรยายประกอบ slide 1",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg",
+            "videoUrl": "",
+            "createdAt": "2021-07-11T14:58:22.059Z",
+            "updatedAt": "2021-07-11T14:58:22.059Z"
+          },
+          {
+            "id": "2",
+            "priority": 2,
+            "topic": "BTS Skytrain Bangkok Thailand 2012.",
+            "content": "BTS Skytrain Bangkok Thailand 2012. BTS Skytrain (Thai: รถไฟฟ้าบีทีเอส rot fai fa BTS), is an elevated rapid transit system in Bangkok, Thailand",
+            "image": "",
+            "videoUrl": "https://www.youtube.com/watch?v=e0JinzWSz2E",
+            "createdAt": "2021-07-11T14:58:22.059Z",
+            "updatedAt": "2021-07-11T14:58:22.059Z"
+          },
+          {
+            "id": "3",
+            "priority": 3,
+            "topic": "วิธีขึ้นรถไฟฟ้า BTS ในปี 2021",
+            "content": "วิธีขึ้นรถไฟฟ้า BTS ในปี 2021 l ตั้มวรวิช",
+            "image": "",
+            "videoUrl": "https://www.youtube.com/embed/0_LrcgUSetQ",
+            "createdAt": "2021-07-11T14:58:22.059Z",
+            "updatedAt": "2021-07-11T14:58:22.059Z"
+          }
+        ],
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

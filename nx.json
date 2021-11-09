@@ -1,0 +1,135 @@
+{
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "recruit-supplier",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "api-home-management": {
+      "tags": []
+    },
+    "api-internship-page-content": {
+      "tags": []
+    },
+    "api-job-position": {
+      "tags": []
+    },
+    "api-master-information": {
+      "tags": []
+    },
+    "api-other-page-content": {
+      "tags": []
+    },
+    "api-recommend-job-position-to-agency": {
+      "tags": []
+    },
+    "api-role": {
+      "tags": []
+    },
+    "api-upload-file": {
+      "tags": []
+    },
+    "api-user": {
+      "tags": []
+    },
+    "api-welfare-page-content": {
+      "tags": []
+    },
+    "app-config": {
+      "tags": []
+    },
+    "global-store": {
+      "tags": []
+    },
+    "guards": {
+      "tags": []
+    },
+    "module-home-management": {
+      "tags": []
+    },
+    "module-internship-page-content": {
+      "tags": []
+    },
+    "module-job-position": {
+      "tags": []
+    },
+    "module-login": {
+      "tags": []
+    },
+    "module-master-information": {
+      "tags": []
+    },
+    "module-other-page-content": {
+      "tags": []
+    },
+    "module-page-not-found": {
+      "tags": []
+    },
+    "module-recommend-job-position-to-agency": {
+      "tags": []
+    },
+    "module-role": {
+      "tags": []
+    },
+    "module-user": {
+      "tags": []
+    },
+    "module-welfare-page-content": {
+      "tags": []
+    },
+    "recruit-supplier": {
+      "tags": []
+    },
+    "recruit-supplier-e2e": {
+      "tags": [],
+      "implicitDependencies": ["recruit-supplier"]
+    },
+    "router": {
+      "tags": []
+    },
+    "shared": {
+      "tags": []
+    },
+    "ui-layout": {
+      "tags": []
+    },
+    "ui-theme": {
+      "tags": []
+    },
+    "utils-file": {
+      "tags": []
+    },
+    "utils-http": {
+      "tags": []
+    },
+    "utils-observer-component": {
+      "tags": []
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  }
+}

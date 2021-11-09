@@ -1,0 +1,20 @@
+<div class="other-page-content-container page-container">
+  <nz-divider nzOrientation="left" nzText="จัดการเนื้อหาหน้าอื่นๆ"></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <recruit-supplier-other-page-content-form
+    [initialOtherPageContent]="otherPageContent"
+    *ngIf="!isInitialLoading"
+    [isLoading]="isLoading"
+    [formMode]="formMode"
+    (submitted)="onUpdateOtherPageContent($event)"
+  >
+  </recruit-supplier-other-page-content-form>
+  <nz-divider></nz-divider>
+  <recruit-supplier-manage-other-page-content-table
+    *ngIf="!isInitialLoading"
+    [configTable]="configTable"
+    [otherPageContentId]="otherPageContentId"
+    (deleted)="onDelete($event)"
+    (priorityChanged)="onPriorityChange($event)"
+  ></recruit-supplier-manage-other-page-content-table>
+</div>

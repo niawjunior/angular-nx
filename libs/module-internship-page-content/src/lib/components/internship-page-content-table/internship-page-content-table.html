@@ -1,0 +1,85 @@
+<div class="internship-page-content-table-container">
+  <div nz-row [nzGutter]="16" class="mt-4 mb-4 d-flex justify-content-end">
+    <div nz-col class="gutter-row">
+      <a [routerLink]="[internshipCreateUrl]">
+        <button nz-button nzType="primary">เพิ่มหัวข้อ</button>
+      </a>
+    </div>
+  </div>
+  <nz-table
+    nzShowSizeChanger
+    [nzScroll]="{x: '1000px'}"
+    [nzData]="configTable.internshipPageContents"
+    [nzLoading]="configTable.isLoading"
+    [nzHideOnSinglePage]="true"
+  >
+    <thead>
+      <tr>
+        <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+        <th nzWidth="100px">ลำดับที่</th>
+        <th>ชื่อหัวข้อ</th>
+        <th nzWidth="400px">คำบรรยายภาพ</th>
+        <th>วันที่ปรับปรุง</th>
+        <th nzAlign="right">จัดการ</th>
+      </tr>
+    </thead>
+    <tbody cdkDropList (cdkDropListDropped)="onPriorityChange($event)">
+      <tr
+        *ngFor="let internshipPageContent of configTable.internshipPageContents"
+        cdkDrag
+        [cdkDragData]="internshipPageContent"
+      >
+        <td cdkDragHandle class="cursor-move">
+          <i nz-icon nzType="drag" nzTheme="outline" class="align-middle"></i>
+          {{ internshipPageContent.priority}}
+        </td>
+        <td nzWidth="50px">
+          <p nzEllipsis [nzEllipsisRows]="2" nz-typography>
+            {{ internshipPageContent.topic }}
+          </p>
+        </td>
+        <td nzWidth="50px">
+          <p nzEllipsis [nzEllipsisRows]="2" nz-typography>
+            {{ internshipPageContent.content }}
+          </p>
+        </td>
+        <td nzWidth="50px">
+          <p nzEllipsis [nzEllipsisRows]="2" nz-typography>
+            {{ internshipPageContent.updatedAt | formatDate }}
+          </p>
+        </td>
+        <td nzAlign="right">
+          <a [routerLink]="[internshipUpdateUrl(internshipPageContent.id)]">
+            <button class="ant-btn-warning" nz-button nzType="primary">
+              <i nz-icon nzType="edit"></i>
+            </button>
+          </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button
+            nz-popconfirm
+            [nzPopconfirmTitle]="confirmTitle"
+            nz-button
+            nzType="primary"
+            nzDanger
+            (nzOnConfirm)="onDelete(internshipPageContent.id)"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+          <ng-template #confirmTitle>
+            <div nz-space nzDirection="vertical">
+              <div *nzSpaceItem>
+                <i
+                  nz-icon
+                  nzType="question-circle-o"
+                  class="text-danger align-middle mr-2"
+                ></i>
+                <span>ยืนยัน</span>
+              </div>
+              <div *nzSpaceItem>คุณต้องการลบเนื้อหาหน้าฝึกงาน ?</div>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

@@ -1,0 +1,85 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/masters",
+        "queryParameters": {
+          "PageNumber": {
+            "matches": ".*"
+          },
+          "PageSize": {
+            "matches": ".*"
+          },
+          "type": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "data": [
+            {
+              "id": 1,
+              "nameTh": "สถาบันแห่งหนึ่ง TH",
+              "nameEn": "สถาบันแห่งหนึ่ง EN",
+              "code": "CODE678",
+              "type": "type 1",
+              "company": "BTS",
+              "isActive": true,
+              "createdBy": "admin2",
+              "startDate": "2021-01-12T04:04:43.933Z",
+              "endDate": "2022-06-10T04:04:43.933Z",
+              "updatedAt": "2021-06-27T04:04:43.933Z"
+            },
+            {
+              "id": 2,
+              "nameTh": "สถาบันแห่งหนึ่ง TH",
+              "nameEn": "สถาบันแห่งหนึ่ง EN",
+              "code": "CODE679",
+              "type": "type 2",
+              "company": "BTS",
+              "isActive": false,
+              "createdBy": "admin2",
+              "startDate": "2021-01-12T04:04:43.933Z",
+              "endDate": "2022-06-10T04:04:43.933Z",
+              "updatedAt": "2021-06-27T04:04:43.933Z"
+            },
+            {
+              "id": 3,
+              "nameTh": "สถาบันแห่งหนึ่ง TH",
+              "nameEn": "สถาบันแห่งหนึ่ง EN",
+              "code": "CODE610",
+              "type": "type 1",
+              "company": "BTS",
+              "isActive": true,
+              "createdBy": "admin2",
+              "startDate": "2021-01-12T04:04:43.933Z",
+              "endDate": "2022-06-10T04:04:43.933Z",
+              "updatedAt": "2021-06-27T04:04:43.933Z"
+            }
+          ],
+          "succeeded": true,
+          "message": "success",
+          "pageNumber": 1,
+          "pageSize": 10,
+          "firstPage": "1",
+          "lastPage": "1",
+          "totalPages": 1,
+          "totalRecords": 3,
+          "nextPage": "1",
+          "previousPage": "1"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

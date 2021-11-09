@@ -1,0 +1,9 @@
+<div class="role-index-container page-container">
+  <nz-divider nzOrientation="left" nzText="บทบาท"></nz-divider>
+  <recruit-supplier-role-table
+    [configTable]="configTable"
+    (paramsChanged)="onParamsChange($event)"
+    (searched)="onSearch($event)"
+    (deleted)="onDelete($event)"
+  ></recruit-supplier-role-table>
+</div>

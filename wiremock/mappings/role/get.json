@@ -1,0 +1,66 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/roles",
+        "queryParameters": {}
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "data": [
+            {
+              "id": "1f1256d8-696d-47d0-463a-08d93da5b511",
+              "roleName": "ฝ่ายบุคคล",
+              "roleDescription": null,
+              "roleMapping": null
+            },
+            {
+              "id": "25fc9eb5-17d8-4286-2fe7-08d93da60141",
+              "roleName": "ผู้จัดการ",
+              "roleDescription": null,
+              "roleMapping": null
+            },
+            {
+              "id": "e0e63e32-4d4d-4997-3e24-08d93da61566",
+              "roleName": "ผู้ใช้",
+              "roleDescription": null,
+              "roleMapping": null
+            },
+            {
+              "id": "919acbca-6847-426e-3e25-08d93da61566",
+              "roleName": "ผู้อำนวยการ",
+              "roleDescription": null,
+              "roleMapping": null
+            },
+            {
+              "id": "2df664ee-85de-4e14-bfcc-d76df675470e",
+              "roleName": "แม่บ้าน",
+              "roleDescription": "this is a normal user",
+              "roleMapping": null
+            }
+          ],
+          "succeeded": true,
+          "message": "success",
+          "pageNumber": 1,
+          "pageSize": 10,
+          "firstPage": "1",
+          "lastPage": "1",
+          "totalPages": 1,
+          "totalRecords": 3,
+          "nextPage": "1",
+          "previousPage": "1"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

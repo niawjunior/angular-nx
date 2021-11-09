@@ -1,0 +1,60 @@
+<div nz-row [nzGutter]="16" class="mt-4 mb-4" nzJustify="space-between">
+  <div nz-col class="gutter-row" [nzSpan]="6">
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input
+        type="text"
+        nz-input
+        placeholder="ค้นหา"
+        [(ngModel)]="configTable.keyword"
+        (keyup.enter)="onSearch()"
+      />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button
+        nz-button
+        nzSearch
+        class="text-white d-flex align-items-center justify-content-center"
+        (click)="onSearch()"
+      >
+        <i nz-icon nzType="search"></i>
+      </button>
+    </ng-template>
+  </div>
+</div>
+<nz-table
+  nzShowSizeChanger
+ [nzScroll]="{x: '1000px'}"
+  [nzData]="configTable.agencies"
+  [nzFrontPagination]="false"
+  [nzLoading]="configTable.isLoading"
+  [nzTotal]="configTable.total"
+  [nzPageSize]="configTable.pageSize"
+  [nzPageIndex]="configTable.currentPage"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+    <tr>
+      <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+      <th>รหัสผนักงาน</th>
+      <th>ชื่อต้นสังกัด (ภาษาไทย)</th>
+      <th>ชื่อต้นสังกัด (ภาษาอังกฤษ)</th>
+      <th>แผนก / ส่วน / ฝ่าย</th>
+      <th nzAlign="right">จัดการ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agency of configTable.agencies">
+      <td>{{ agency.employeeId}}</td>
+      <td>{{ agency.fullnameTh }}</td>
+      <td>{{ agency.fullnameEn }}</td>
+      <td>{{ agency.departmentTh }}</td>
+      <td nzAlign="right">
+        <a [routerLink]="[recommendJobPositionUrl(agency.id)]">
+          <button class="ant-btn-warning" nz-button nzType="primary">
+            <i nz-icon nzType="edit"></i>
+          </button>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

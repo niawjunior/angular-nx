@@ -1,0 +1,80 @@
+:host ::ng-deep {
+  .ql-editor {
+    color: black;
+  }
+
+  quill-editor.ng-dirty.ng-invalid {
+    .ql-container.ql-snow {
+      border: 1px solid #f5222e !important;
+    }
+  }
+
+  .ng-dirty.ng-valid {
+    .ql-container.ql-snow {
+      border: unset !important;
+    }
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='10px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='10px']::before {
+    content: '10px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='10px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='10px']::before {
+    content: '10px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='12px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='12px']::before {
+    content: '12px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='14px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='14px']::before {
+    content: '14px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='16px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='16px']::before {
+    content: '16px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='18px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='18px']::before {
+    content: '18px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='20px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='20px']::before {
+    content: '20px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='22px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='22px']::before {
+    content: '22px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='24px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='24px']::before {
+    content: '24px';
+  }
+
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value='36px']::before,
+  .ql-snow .ql-picker.ql-size .ql-picker-label[data-value='36px']::before {
+    content: '36px';
+  }
+}
+
+:host ::ng-deep .ql-editor,
+.ql-toolbar {
+  background-color: #ffffff;
+
+  h1,h2,h3,h4,h5,h6 {
+    color: black;
+  }
+}
+
+:host ::ng-deep .ql-toolbar {
+  background-color: #ffffff;
+}

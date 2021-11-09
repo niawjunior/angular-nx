@@ -1,0 +1,82 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/positions",
+        "queryParameters": {
+          "PageNumber": {
+            "matches": ".*"
+          },
+          "PageSize": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "data": [
+            {
+              "id": 1,
+              "priority": 1,
+              "name": "ช่างไฟ",
+              "description": "ต้องการช่างไฟฟ้า",
+              "address": "bts 1",
+              "tag": "ปกติ",
+              "status": "F",
+              "createdBy": "admin1",
+              "startDate": "2021-06-27T04:04:43.933Z",
+              "endDate": "2021-06-27T04:04:43.933Z",
+              "updatedAt": "2021-06-27T04:04:43.933Z"
+            },
+            {
+              "id": 2,
+              "priority": 2,
+              "name": "ช่างแอร์",
+              "description": "ต้องการช่างแอร์",
+              "address": "bts 1",
+              "tag": "ด่วน",
+              "status": "F",
+              "user": "admin2",
+              "startDate": "2021-06-27T04:04:43.933Z",
+              "endDate": "2021-06-27T04:04:43.933Z",
+              "updatedAt": "2021-06-27T04:04:43.933Z"
+            },
+            {
+              "id": 3,
+              "priority": 3,
+              "name": "ช่างแอร์",
+              "description": "ต้องการช่างแอร์",
+              "address": "bts 1",
+              "tag": "ด่วน",
+              "status": "F",
+              "user": "admin3",
+              "startDate": "2021-06-27T04:04:43.933Z",
+              "endDate": "2021-06-27T04:04:43.933Z",
+              "updatedAt": "2021-06-27T04:04:43.933Z"
+            }
+          ],
+          "succeeded": true,
+          "message": "success",
+          "pageNumber": 1,
+          "pageSize": 10,
+          "firstPage": "1",
+          "lastPage": "1",
+          "totalPages": 1,
+          "totalRecords": 3,
+          "nextPage": "1",
+          "previousPage": "1"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

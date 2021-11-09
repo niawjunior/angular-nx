@@ -1,0 +1,186 @@
+<form
+  class="job-position-form mt-4 mx-auto"
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="jobPositionForm"
+  (ngSubmit)="onSubmitForm()"
+>
+  <div nz-row [nzGutter]="16">
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="startDate"
+          >วันที่เริ่มรับ
+        </nz-form-label>
+        <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+          <nz-date-picker
+            (ngModelChange)="validateEndDate()"
+            class="w-100"
+            formControlName="startDate"
+            nzFormat="dd-MM-YYYY"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzFor="endDate"
+          >วันที่สิ้นสุดรับ
+        </nz-form-label>
+        <nz-form-control nzErrorTip="วันที่สิ้นสุดรับต้องหลังจากวันที่เริ่มรับ">
+          <nz-date-picker
+            class="w-100"
+            formControlName="endDate"
+            nzFormat="dd-MM-YYYY"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="name">สมัครตำแหน่ง</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <nz-input-group [nzSuffix]="nameSuffixIcon">
+        <input
+          placeholder="กรอกตำแหน่งงาน"
+          nz-input
+          formControlName="name"
+          maxlength="250"
+          [nzAutocomplete]="nameAuto"
+        />
+      </nz-input-group>
+      <ng-template #nameSuffixIcon>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <nz-autocomplete #nameAuto [compareWith]="compareFun">
+        <nz-auto-option
+          *ngFor="let nameOption of nameOptions"
+          [nzValue]="nameOption"
+          [nzLabel]="nameOption"
+        >
+          {{ nameOption }}
+        </nz-auto-option>
+      </nz-autocomplete>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="address">สถานที่งาน</nz-form-label>
+    <nz-form-control>
+      <nz-input-group [nzSuffix]="addressSuffixIcon">
+        <input
+          placeholder="กรอกสถานที่ทำงาน"
+          nz-input
+          formControlName="address"
+          maxlength="250"
+          [nzAutocomplete]="addressAuto"
+        />
+      </nz-input-group>
+      <ng-template #addressSuffixIcon>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <nz-autocomplete #addressAuto [compareWith]="compareFun">
+        <nz-auto-option
+          *ngFor="let addressOption of addressOptions"
+          [nzValue]="addressOption"
+          [nzLabel]="addressOption"
+        >
+          {{ addressOption }}
+        </nz-auto-option>
+      </nz-autocomplete>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="tag">ป้ายกำกับ</nz-form-label>
+    <nz-form-control>
+      <nz-input-group [nzSuffix]="tagSuffixIcon">
+        <input
+          placeholder="กรอกป้ายกำกับ"
+          nz-input
+          formControlName="tag"
+          maxlength="250"
+          [nzAutocomplete]="tagAuto"
+        />
+      </nz-input-group>
+      <ng-template #tagSuffixIcon>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <nz-autocomplete #tagAuto [compareWith]="compareFun">
+        <nz-auto-option
+          *ngFor="let tagOption of tagOptions"
+          [nzValue]="tagOption"
+          [nzLabel]="tagOption"
+        >
+          {{ tagOption }}
+        </nz-auto-option>
+      </nz-autocomplete>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="description"
+      >Job Description</nz-form-label
+    >
+    <nz-form-control>
+      <recruit-supplier-editor
+        [form]="jobPositionForm"
+        controlName="description"
+      >
+      </recruit-supplier-editor>
+    </nz-form-control>
+    <!-- Display error message manual because editor can't auto-detect error -->
+    <div
+      class="ant-form-item-explain ant-form-item-explain-error ng-star-inserted"
+      *ngIf="description.invalid && (description.dirty || description.touched)"
+    >
+      <div class="ng-trigger ng-trigger-helpMotion">กรุณากรอกข้อมูล</div>
+    </div>
+  </nz-form-item>
+
+  <nz-divider> </nz-divider>
+
+  <nz-form-item>
+    <nz-space class="ml-auto">
+      <button
+        *nzSpaceItem
+        nz-button
+        (click)="onCancel()"
+        type="button"
+        [disabled]="isLoading"
+      >
+        ยกเลิก
+      </button>
+      <button
+        *nzSpaceItem
+        nz-popconfirm
+        [nzPopconfirmTitle]="confirmTitle"
+        nz-button
+        nzType="primary"
+        (nzOnConfirm)="onConfirmSubmitForm()"
+        (nzOnCancel)="onPopConfirmCancel()"
+        [nzPopconfirmVisible]="isShowPopConfirm"
+        [nzPopconfirmTrigger]="null"
+        [nzLoading]="isLoading"
+      >
+        บันทึก
+      </button>
+      <ng-template #confirmTitle>
+        <div nz-space nzDirection="vertical">
+          <div *nzSpaceItem>
+            <i
+              nz-icon
+              nzType="question-circle-o"
+              class="mr-2 text-warning align-middle"
+            ></i>
+            <span>ยืนยน</span>
+          </div>
+          <div *nzSpaceItem>
+            คุณต้องการ {{actionText}} ตำแหน่งงานที่รับสมัคร ?
+          </div>
+        </div>
+      </ng-template>
+    </nz-space>
+  </nz-form-item>
+</form>

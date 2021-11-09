@@ -1,0 +1,72 @@
+<form
+  class="role-form mt-4 mx-auto"
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="roleForm"
+  (ngSubmit)="onSubmitForm()"
+>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="role">บทบาท</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <input
+        placeholder="กรอกชื่อบทบาท"
+        nz-input
+        formControlName="role"
+        type="text"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzFor="permissions">การให้สิทธิ์เมนู</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณาให้สิทธิ์เข้าถึงเมนู">
+      <nz-checkbox-group
+        formControlName="permissions"
+        class="d-flex flex-column"
+      ></nz-checkbox-group>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-divider> </nz-divider>
+
+  <nz-form-item>
+    <nz-space class="ml-auto">
+      <button
+        *nzSpaceItem
+        nz-button
+        (click)="onCancel()"
+        type="button"
+        [disabled]="isLoading"
+      >
+        ยกเลิก
+      </button>
+      <button
+        *nzSpaceItem
+        nz-popconfirm
+        [nzPopconfirmTitle]="confirmTitle"
+        nz-button
+        nzType="primary"
+        (nzOnConfirm)="onConfirmSubmitForm()"
+        (nzOnCancel)="onPopConfirmCancel()"
+        [nzPopconfirmVisible]="isShowPopConfirm"
+        [nzPopconfirmTrigger]="null"
+        [nzLoading]="isLoading"
+      >
+        บันทึก
+      </button>
+      <ng-template #confirmTitle>
+        <div nz-space nzDirection="vertical">
+          <div *nzSpaceItem>
+            <i
+              nz-icon
+              nzType="question-circle-o"
+              class="mr-2 text-warning align-middle"
+            ></i>
+            <span>ยืนยัน</span>
+          </div>
+          <div *nzSpaceItem>คุณต้องการ {{actionText}} บทบาท ?</div>
+        </div>
+      </ng-template>
+    </nz-space>
+  </nz-form-item>
+</form>

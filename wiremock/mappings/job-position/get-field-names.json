@@ -1,0 +1,39 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/positions/groups/names",
+        "queryParameters": {
+          "search": {
+            "matches": ".*"
+          },
+          "limit": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "data": [
+            "ช่างไฟในตำนาน",
+            "ช่างแอร์ในตำนาน",
+            "โปรแกรมเมอร์",
+            "พนักงานขับ",
+            "ฝ่ายบุคคล",
+            "ceo"
+          ]
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

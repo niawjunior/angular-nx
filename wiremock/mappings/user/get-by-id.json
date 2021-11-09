@@ -1,0 +1,38 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/api/users/([a-zA-Z0-9-]*)"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "id": "1",
+          "employeeId": "123456",
+          "fullnameTh": "สำใจ สบายดี",
+          "fullnameEn": "Somjai Sabaidee",
+          "departmentTh": "แผนกซ่อมบำรุง",
+          "departmentEn": "maintenance department",
+          "status": "T",
+          "roleId": "25fc9eb5-17d8-4286-2fe7-08d93da60141",
+          "rolesModel": {
+            "id": "1f1256d8-696d-47d0-463a-08d93da5b511",
+            "roleName": "ผู้จัดการ",
+            "roleDescription": "ผู้จัดการ",
+            "roleMapping": null
+          },
+          "updatedAt": "2021-06-27T04:04:43.933Z"
+        },
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Methods": "*",
+          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Encoding, Server, Transfer-Encoding, X-Requested-With, X-Authorization",
+          "X-Content-Type-Options": "nosniff",
+          "x-frame-options": "DENY",
+          "x-xss-protection": "1; mode=block"
+        }
+      }
+    }
+  ]
+}

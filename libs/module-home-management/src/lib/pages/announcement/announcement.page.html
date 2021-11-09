@@ -1,0 +1,12 @@
+<div class="announcement-container page-container">
+  <nz-divider
+    nzOrientation="left"
+    nzText="ข่าวประชาสัมพันธ์ (ตัววิ่ง)"
+  ></nz-divider>
+  <recruit-supplier-announcement-table
+    [configTable]="configTable"
+    (deleted)="onDelete($event)"
+    (edit)="onEdit($event)"
+    (priorityChanged)="onPriorityChange($event)"
+  ></recruit-supplier-announcement-table>
+</div>

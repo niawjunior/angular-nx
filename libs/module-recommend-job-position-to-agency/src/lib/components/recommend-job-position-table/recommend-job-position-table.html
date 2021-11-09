@@ -1,0 +1,95 @@
+<div nz-row [nzGutter]="16" class="mt-4 mb-4" nzJustify="space-between">
+  <div nz-col class="gutter-row" [nzSpan]="6">
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input
+        type="text"
+        nz-input
+        placeholder="ค้นหา"
+        [(ngModel)]="configTable.keyword"
+        (keyup.enter)="onSearch()"
+      />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button
+        nz-button
+        nzSearch
+        class="text-white d-flex align-items-center justify-content-center"
+        (click)="onSearch()"
+      >
+        <i nz-icon nzType="search"></i>
+      </button>
+    </ng-template>
+  </div>
+  <div nz-col class="gutter-row">
+    <a [routerLink]="[recommendJobPositionCreateUrl]">
+      <button nz-button nzType="primary">เพิ่มการแนะนำตำแหน่งงาน</button>
+    </a>
+  </div>
+</div>
+<nz-table
+  nzShowSizeChanger
+ [nzScroll]="{x: '1000px'}"
+  [nzData]="configTable.recommendJobPositions"
+  [nzFrontPagination]="false"
+  [nzLoading]="configTable.isLoading"
+  [nzTotal]="configTable.total"
+  [nzPageSize]="configTable.pageSize"
+  [nzPageIndex]="configTable.currentPage"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+    <tr>
+      <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+      <th>วันที่เริ่ม การเข้าถึง</th>
+      <th>วันที่สิ้นสุด การเข้าถึง</th>
+      <th>วันที่เริ่ม การยื่นสมัคร</th>
+      <th>วันที่สิ้นสุด การยื่นสมัคร</th>
+      <th>ตำแหน่งงานที่แนะนำ</th>
+      <th>จำนวนผู้สมัครที่พบ</th>
+      <th  nzRight nzWidth="120px" nzAlign="right">จัดการ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let recommendJobPosition of configTable.recommendJobPositions">
+      <td>{{ recommendJobPosition.startReachDate | formatDate }}</td>
+      <td>{{ recommendJobPosition.endReachDate | formatDate }}</td>
+      <td>{{ recommendJobPosition.startApplyDate | formatDate }}</td>
+      <td>{{ recommendJobPosition.endApplyDate | formatDate }}</td>
+      <td>{{ recommendJobPosition.jobPosition?.name }}</td>
+      <td>{{ recommendJobPosition.amountCandidate }}</td>
+      <td nzAlign="right">
+        <a
+          [routerLink]="[recommendJobPositionUpdateUrl(recommendJobPosition.id)]"
+        >
+          <button class="ant-btn-warning" nz-button nzType="primary">
+            <i nz-icon nzType="edit"></i>
+          </button>
+        </a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button
+          nz-popconfirm
+          [nzPopconfirmTitle]="confirmTitle"
+          nz-button
+          nzType="primary"
+          nzDanger
+          (nzOnConfirm)="onDelete(recommendJobPosition.id)"
+        >
+          <i nz-icon nzType="delete"></i>
+        </button>
+        <ng-template #confirmTitle>
+          <div nz-space nzDirection="vertical">
+            <div *nzSpaceItem>
+              <i
+                nz-icon
+                nzType="question-circle-o"
+                class="text-danger align-middle mr-2"
+              ></i>
+              <span>ยืนยน</span>
+            </div>
+            <div *nzSpaceItem>คุณต้องการลบรายการแนะนำตำแหน่งงาน ?</div>
+          </div>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

@@ -1,0 +1,10 @@
+<div class="role-index-container page-container">
+  <nz-divider nzOrientation="left" nzText="ผู้ใช้งาน"></nz-divider>
+  <recruit-supplier-user-table
+    [configTable]="configTable"
+    (paramsChanged)="onParamsChange($event)"
+    (searched)="onSearch($event)"
+    (deleted)="onDelete($event)"
+    (typeChanged)="onTypeChange($event)"
+  ></recruit-supplier-user-table>
+</div>

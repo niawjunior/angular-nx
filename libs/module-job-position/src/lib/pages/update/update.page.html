@@ -1,0 +1,15 @@
+<div class="job-position-update-container page-container">
+  <nz-divider
+    nzOrientation="left"
+    nzText="แก้ไขตำแหน่งงานที่รับสมัคร"
+  ></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <recruit-supplier-job-position-form
+    [initialJobPosition]="jobPosition"
+    *ngIf="!isInitialLoading"
+    [isLoading]="isLoading"
+    [formMode]="formMode"
+    (submitted)="onUpdateJobPosition($event)"
+  >
+  </recruit-supplier-job-position-form>
+</div>

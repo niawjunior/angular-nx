@@ -1,0 +1,90 @@
+<div class="welfare-page-content-table-container">
+  <div nz-row [nzGutter]="16" class="mt-4 mb-4 d-flex justify-content-end">
+    <div nz-col class="gutter-row">
+      <a [routerLink]="[welfareCreateUrl]">
+        <button nz-button nzType="primary">เพิ่มเนื้อหาสวัสดิการ</button>
+      </a>
+    </div>
+  </div>
+  <nz-table
+    nzShowSizeChanger
+    [nzScroll]="{x: '1000px'}"
+    [nzData]="configTable.welfarePageContents"
+    [nzLoading]="configTable.isLoading"
+    [nzHideOnSinglePage]="true"
+  >
+    <thead>
+      <tr>
+        <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+        <th nzWidth="100px">ลำดับที่</th>
+        <th>ภาพ</th>
+        <th>ชื่อสวัสดิการ</th>
+        <th nzWidth="400px">คำบรรยายภาพ</th>
+        <th nzAlign="right">จัดการ</th>
+      </tr>
+    </thead>
+    <tbody cdkDropList (cdkDropListDropped)="onPriorityChange($event)">
+      <tr
+        *ngFor="let welfarePageContent of configTable.welfarePageContents"
+        cdkDrag
+        [cdkDragData]="welfarePageContent"
+      >
+        <td cdkDragHandle class="cursor-move">
+          <i nz-icon nzType="drag" nzTheme="outline" class="align-middle"></i>
+          {{ welfarePageContent.priority}}
+        </td>
+        <td>
+          <img
+            nz-image
+            width="100px"
+            height="100px"
+            [nzSrc]="welfarePageContent.image"
+            [nzFallback]="fallbackImage"
+            class="popup-image"
+          />
+        </td>
+        <td nzWidth="50px">
+          <p nzEllipsis [nzEllipsisRows]="2" nz-typography>
+            {{ welfarePageContent.topic }}
+          </p>
+        </td>
+        <td nzWidth="50px">
+          <p nzEllipsis [nzEllipsisRows]="2" nz-typography>
+            {{ welfarePageContent.content }}
+          </p>
+        </td>
+        <td nzAlign="right">
+          <a [routerLink]="[welfareUpdateUrl(welfarePageContent.id)]">
+            <button class="ant-btn-warning" nz-button nzType="primary">
+              <i nz-icon nzType="edit"></i>
+            </button>
+          </a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button
+            nz-popconfirm
+            [nzPopconfirmTitle]="confirmTitle"
+            nz-button
+            nzType="primary"
+            nzDanger
+            (nzOnConfirm)="onDelete(welfarePageContent.id)"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+          <ng-template #confirmTitle>
+            <div nz-space nzDirection="vertical">
+              <div *nzSpaceItem>
+                <i
+                  nz-icon
+                  nzType="question-circle-o"
+                  class="text-danger align-middle mr-2"
+                ></i>
+                <span>ยืนยัน</span>
+              </div>
+              <div *nzSpaceItem>คุณต้องการลบภาพสไลด์หลัก ?</div>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

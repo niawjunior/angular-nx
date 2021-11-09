@@ -1,0 +1,139 @@
+<form
+  class="recommend-job-position-form mt-4 mx-auto"
+  nz-form
+  nzLayout="vertical"
+  [formGroup]="recommendJobPositionForm"
+  (ngSubmit)="onSubmitForm()"
+>
+  <nz-form-item>
+    <nz-form-label nzRequired nzFor="jobPositionId">ตำแหน่งงานที่่แนะนำ</nz-form-label>
+    <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+      <nz-select
+        id="jobPositionId"
+        class="w-100"
+        nzShowSearch
+        nzPlaceHolder="เลือกตำแหน่งงาน"
+        formControlName="jobPositionId"
+        (nzOnSearch)="debouncedOnSearchJobPositions($event)"
+        [nzLoading]="isJobPositionSearching"
+      >
+        <nz-option
+          *ngFor="let jobPosition of jobPositions"
+          [nzLabel]="jobPosition.name"
+          [nzValue]="jobPosition.id"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div nz-row [nzGutter]="16">
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="startReachDate"
+          >วันที่เริ่มการเข้าถึง
+        </nz-form-label>
+        <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+          <nz-date-picker
+            class="w-100"
+            formControlName="startReachDate"
+            nzFormat="dd-MM-YYYY"
+            (ngModelChange)="validateEndReachDate()"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="endReachDate"
+          >วันที่สิ้นสุดการเข้าถึง
+        </nz-form-label>
+        <nz-form-control nzErrorTip="วันที่สิ้นสุดการเข้าถึงต้องหลังจากวันที่เริ่มการเข้าถึง">
+          <nz-date-picker
+            class="w-100"
+            formControlName="endReachDate"
+            nzFormat="dd-MM-YYYY"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="16">
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="startApplyDate"
+          >วันที่เริ่มการยื่นสมัคร
+        </nz-form-label>
+        <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+          <nz-date-picker
+            class="w-100"
+            formControlName="startApplyDate"
+            nzFormat="dd-MM-YYYY"
+            (ngModelChange)="validateEndApplyDate()"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="endApplyDate"
+          >วันที่สิ้นสุดการยื่นสมัคร
+        </nz-form-label>
+        <nz-form-control nzErrorTip="วันที่สิ้นสุดการยื่นสมัครต้องหลังจากวันที่เริ่มการยื่นสมัคร">
+          <nz-date-picker
+            class="w-100"
+            formControlName="endApplyDate"
+            nzFormat="dd-MM-YYYY"
+          ></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <nz-divider> </nz-divider>
+
+  <nz-form-item>
+    <nz-space class="ml-auto">
+      <button
+        *nzSpaceItem
+        nz-button
+        (click)="onCancel()"
+        type="button"
+        [disabled]="isLoading"
+      >
+        ยกเลิก
+      </button>
+      <button
+        *nzSpaceItem
+        nz-popconfirm
+        [nzPopconfirmTitle]="confirmTitle"
+        nz-button
+        nzType="primary"
+        (nzOnConfirm)="onConfirmSubmitForm()"
+        (nzOnCancel)="onPopConfirmCancel()"
+        [nzPopconfirmVisible]="isShowPopConfirm"
+        [nzPopconfirmTrigger]="null"
+        [nzLoading]="isLoading"
+      >
+        บันทึก
+      </button>
+      <ng-template #confirmTitle>
+        <div nz-space nzDirection="vertical">
+          <div *nzSpaceItem>
+            <i
+              nz-icon
+              nzType="question-circle-o"
+              class="mr-2 text-warning align-middle"
+            ></i>
+            <span>ยืนยน</span>
+          </div>
+          <div *nzSpaceItem>
+            คุณต้องการ {{actionText}} รายการแนะนำตำแหน่งงาน ?
+          </div>
+        </div>
+      </ng-template>
+    </nz-space>
+  </nz-form-item>
+</form>

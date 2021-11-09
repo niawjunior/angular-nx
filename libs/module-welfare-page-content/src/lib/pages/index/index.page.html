@@ -1,0 +1,8 @@
+<div class="main-slide-image-container page-container">
+  <nz-divider nzOrientation="left" nzText="เนื้อหาหน้าสวัสดิการ"></nz-divider>
+  <recruit-supplier-welfare-page-content-table
+    [configTable]="configTable"
+    (deleted)="onDelete($event)"
+    (priorityChanged)="onPriorityChange($event)"
+  ></recruit-supplier-welfare-page-content-table>
+</div>

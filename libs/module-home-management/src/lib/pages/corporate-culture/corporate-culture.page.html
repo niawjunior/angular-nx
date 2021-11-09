@@ -1,0 +1,14 @@
+<div class="popup-image-container page-container">
+  <nz-divider nzOrientation="left" nzText="วัฒนธรรมองค์กร"></nz-divider>
+  <recruit-supplier-corporate-culture-main-image
+    *ngIf="!isLoadingMainImage"
+    [initialCorporateCulterMainImage]="corporateCulterMainImage"
+    (submitted)="onSubmitCorporteCulterMainImage($event)"
+  ></recruit-supplier-corporate-culture-main-image>
+  <recruit-supplier-corporate-culture-table
+    [configTable]="configTable"
+    (deleted)="onDelete($event)"
+    (edit)="onEdit($event)"
+    (priorityChanged)="onPriorityChange($event)"
+  ></recruit-supplier-corporate-culture-table>
+</div>

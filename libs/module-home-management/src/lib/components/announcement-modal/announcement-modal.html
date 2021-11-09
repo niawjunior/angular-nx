@@ -1,0 +1,94 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzCentered
+  nzWidth="600px"
+  nzTitle="ข่าวประชาสัมพันธ์"
+  (nzOnCancel)="onCancel()"
+  nzMaskClosable="false"
+>
+  <ng-container *nzModalContent>
+    <div class="announcement-form">
+      <form
+        class="mt-4 mx-auto"
+        nz-form
+        nzLayout="vertical"
+        [formGroup]="announcementForm"
+      >
+        <nz-form-item>
+          <nz-form-label nzFor="role">ข้อความข่าว</nz-form-label>
+          <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+            <input
+              placeholder="กรอกข้อความข่าว"
+              nz-input
+              formControlName="content"
+              type="text"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <div nz-row [nzGutter]="16">
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label nzRequired nzFor="startDate"
+                >วันที่เริ่มแสดง
+              </nz-form-label>
+              <nz-form-control nzErrorTip="กรุณากรอกข้อมูล">
+                <nz-date-picker
+                  (ngModelChange)="validateEndDate()"
+                  class="w-100"
+                  formControlName="startDate"
+                  nzFormat="dd-MM-YYYY"
+                ></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-label nzFor="endDate">วันที่สิ้นสุดแสดง </nz-form-label>
+              <nz-form-control
+                nzErrorTip="วันที่สิ้นสุดแสดงต้องหลังจากวันที่เริ่มแสดง"
+              >
+                <nz-date-picker
+                  class="w-100"
+                  formControlName="endDate"
+                  nzFormat="dd-MM-YYYY"
+                ></nz-date-picker>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="onCancel()">ยกเลิก</button>
+    <button
+      nz-popconfirm
+      [nzPopconfirmTitle]="confirmTitle"
+      nz-button
+      nzType="primary"
+      (nzOnConfirm)="onConfirmSubmitForm()"
+      (nzOnCancel)="onPopConfirmCancel()"
+      [nzPopconfirmVisible]="isShowPopConfirm"
+      [nzPopconfirmTrigger]="null"
+      [nzLoading]="isLoading"
+      (click)="onSubmitForm()"
+    >
+      บันทึก
+    </button>
+
+    <ng-template #confirmTitle>
+      <div nz-space nzDirection="vertical">
+        <div *nzSpaceItem>
+          <i
+            nz-icon
+            nzType="question-circle-o"
+            class="mr-2 text-warning align-middle"
+          ></i>
+          <span>ยืนยัน</span>
+        </div>
+        <div *nzSpaceItem>คุณต้องการ {{actionText}} ข่าวประชาสัมพันธ์?</div>
+      </div>
+    </ng-template>
+  </div>
+</nz-modal>

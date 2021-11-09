@@ -1,0 +1,15 @@
+<div class="master-information-update-container page-container">
+  <nz-divider
+    nzOrientation="left"
+    nzText="แก้ไขตำแหน่งงานที่รับสมัคร"
+  ></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <recruit-supplier-master-information-form
+    [initialMasterInformation]="masterInformation"
+    *ngIf="!isInitialLoading"
+    [isLoading]="isLoading"
+    [formMode]="formMode"
+    (submitted)="onUpdateMasterInformation($event)"
+  >
+  </recruit-supplier-master-information-form>
+</div>

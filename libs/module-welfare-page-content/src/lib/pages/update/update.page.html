@@ -1,0 +1,12 @@
+<div class="welfare-page-content-create-container page-container">
+  <nz-divider nzOrientation="left" nzText="แก้ไขเนื้อหาสวัสดิการ"></nz-divider>
+  <nz-skeleton *ngIf="isInitialLoading" [nzActive]="true"></nz-skeleton>
+  <recruit-supplier-welfare-page-content-form
+    [initialWelfarePageContent]="welfarePageContent"
+    *ngIf="!isInitialLoading"
+    [isLoading]="isLoading"
+    [formMode]="formMode"
+    (submitted)="onUpdateWelfarePageContent($event)"
+  >
+  </recruit-supplier-welfare-page-content-form>
+</div>

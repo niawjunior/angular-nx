@@ -1,0 +1,106 @@
+<div class="announcement-table-container">
+  <div nz-row [nzGutter]="16" class="mt-4 mb-4 d-flex justify-content-end">
+    <div nz-col class="gutter-row">
+      <button nz-button nzType="primary" (click)="openModal()">
+        เพิ่มภาพสไลด์หลัก
+      </button>
+    </div>
+  </div>
+  <nz-table
+    nzShowSizeChanger
+    [nzScroll]="{x: '1000px'}"
+    [nzData]="configTable.mainSlideImages"
+    [nzLoading]="configTable.isLoading"
+    [nzHideOnSinglePage]="true"
+  >
+    <thead>
+      <tr>
+        <!-- If client want to sort priority can add [nzSortFn]="true" to comlumn priority -->
+        <th nzWidth="100px">ลำดับที่</th>
+        <th>วันที่เริ่มแสดง</th>
+        <th>วันที่สิ้นสุดแสดง</th>
+        <th>ภาพ</th>
+        <th nzWidth="400px">คำบรรยายภาพ</th>
+        <th nzWidth="400px">ลิงค์</th>
+        <th>วันที่ปรับปรุง</th>
+        <th nzAlign="right">จัดการ</th>
+      </tr>
+    </thead>
+    <tbody cdkDropList (cdkDropListDropped)="onPriorityChange($event)">
+      <tr
+        *ngFor="let mainSlideImage of configTable.mainSlideImages"
+        cdkDrag
+        [cdkDragData]="mainSlideImage"
+      >
+        <td cdkDragHandle class="cursor-move">
+          <i nz-icon nzType="drag" nzTheme="outline" class="align-middle"></i>
+          {{ mainSlideImage.priority}}
+        </td>
+        <td>{{ mainSlideImage.startDate | formatDate}}</td>
+        <td>{{ mainSlideImage.endDate | formatDate}}</td>
+        <td>
+          <img
+            nz-image
+            width="100px"
+            height="100px"
+            [nzSrc]="mainSlideImage.image"
+            [alt]="mainSlideImage.link"
+            [nzFallback]="fallbackImage"
+            class="popup-image"
+          />
+        </td>
+        <td nzWidth="50px">
+          <p nzEllipsis [nzEllipsisRows]="2" nz-typography>
+            {{ mainSlideImage.content }}
+          </p>
+        </td>
+        <td nzWidth="50px">
+          <a [href]="mainSlideImage.link" target="_blank"
+            ><p nzEllipsis [nzEllipsisRows]="2" nz-typography>
+              {{ mainSlideImage.link }}
+            </p></a
+          >
+        </td>
+
+        <td>{{ mainSlideImage.updatedAt | formatDate}}</td>
+        <td nzAlign="right">
+          <button
+            class="ant-btn-warning"
+            nz-button
+            nzType="primary"
+            (click)="onEdit(mainSlideImage.id)"
+          >
+            <i nz-icon nzType="edit"></i>
+          </button>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button
+            nz-popconfirm
+            [nzPopconfirmTitle]="confirmTitle"
+            nz-button
+            nzType="primary"
+            nzDanger
+            (nzOnConfirm)="onDelete(mainSlideImage.id)"
+          >
+            <i nz-icon nzType="delete"></i>
+          </button>
+          <ng-template #confirmTitle>
+            <div nz-space nzDirection="vertical">
+              <div *nzSpaceItem>
+                <i
+                  nz-icon
+                  nzType="question-circle-o"
+                  class="text-danger align-middle mr-2"
+                ></i>
+                <span>ยืนยัน</span>
+              </div>
+              <div *nzSpaceItem>คุณต้องการลบภาพสไลด์หลัก ?</div>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<recruit-supplier-main-slide-image-modal (cancelled)="closeModal()">
+</recruit-supplier-main-slide-image-modal>

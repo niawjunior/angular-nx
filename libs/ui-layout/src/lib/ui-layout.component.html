@@ -1,0 +1,65 @@
+<nz-layout nz-layout class="layout">
+  <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0">
+    <div class="logo">
+      <nz-avatar class="avatar" nzSrc="assets/images/bts-logo.png"></nz-avatar>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <ng-template ngFor let-menu [ngForOf]="menus" let-i="index">
+        <li
+          *ngIf="menu.submenus && !menu.isNotFinished"
+          nzTitle="{{ menu.title }}"
+          nz-submenu
+          nzOpen="{{ menu.route === submenuOpen }}"
+          nzSelected="{{ menu.route === activeMenu }}"
+        >
+          <ul>
+            <li
+              nz-menu-item
+              nzSelected="{{ submenu.route === activeMenu }}"
+              *ngFor="let submenu of menu.submenus"
+            >
+              <a [routerLink]="[menu.route + '/' + submenu.route]">
+                {{ submenu.title }}</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li
+          *ngIf="!menu.submenus && !menu.isNotFinished"
+          nz-menu-item
+          nzSelected="{{ menu.route === activeMenu }}"
+        >
+          <a [routerLink]="[menu.route]">
+            {{ menu.title }}
+          </a>
+        </li>
+      </ng-template>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <recruit-supplier-header></recruit-supplier-header>
+    <nz-content>
+      <div class="mt-4 mb-4">
+        <nz-breadcrumb>
+          <nz-breadcrumb-item
+            *ngFor="let breadcrumb of breadcrumbs; index as i"
+          >
+            <a
+              [routerLink]="[breadcrumb.route]"
+              *ngIf="i !== breadcrumbs.length - 1"
+              class="breadcrumbs-link"
+            >
+              {{ breadcrumb.name }}
+            </a>
+            <a *ngIf="i === breadcrumbs.length - 1" class="breadcrumbs-link">
+              {{ breadcrumb.name }}
+            </a>
+          </nz-breadcrumb-item>
+        </nz-breadcrumb>
+      </div>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <recruit-supplier-footer></recruit-supplier-footer>
+  </nz-layout>
+</nz-layout>
